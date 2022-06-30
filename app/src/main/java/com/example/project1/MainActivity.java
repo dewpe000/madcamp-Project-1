@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         tab3 = new Tab3();
         fragManager = getSupportFragmentManager();
         fragTransaction = fragManager.beginTransaction();
+        fragTransaction.replace(R.id.main_frame, tab1);
+        fragTransaction.commit();
 
         bottomNavi.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -40,14 +42,20 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch(id) {
                     case R.id.tabNavi1:
+                        fragManager = getSupportFragmentManager();
+                        fragTransaction = fragManager.beginTransaction();
                         fragTransaction.replace(R.id.main_frame, tab1);
                         fragTransaction.commit();
                         break;
                     case R.id.tabNavi2:
+                        fragManager = getSupportFragmentManager();
+                        fragTransaction = fragManager.beginTransaction();
                         fragTransaction.replace(R.id.main_frame, tab2);
                         fragTransaction.commit();
                         break;
                     case R.id.tabNavi3:
+                        fragManager = getSupportFragmentManager();
+                        fragTransaction = fragManager.beginTransaction();
                         fragTransaction.replace(R.id.main_frame, tab3);
                         fragTransaction.commit();
                         break;
@@ -57,7 +65,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        fragTransaction.replace(R.id.main_frame, tab1);
-        fragTransaction.commit();
     }
 }
