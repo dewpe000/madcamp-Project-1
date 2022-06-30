@@ -20,6 +20,11 @@
         <entry key="..\:/Users/hgh/Desktop/Project 1/app/src/main/res/layout/tab3.xml" value="0.3555253623188406" />
         <entry key="..\:/Users/hgh/Desktop/Project 1/app/src/main/res/menu/bottom_navi.xml" value="0.1" />
         <entry key="..\:/Users/hgh/Desktop/Project 1/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2455" />
+<<<<<<< HEAD
+=======
+        <entry key="app/src/main/res/layout/item_list.xml" value="0.40260416666666665" />
+        <entry key="app/src/main/res/layout/tab1.xml" value="0.4036458333333333" />
+>>>>>>> 307fc0f2641f996f98484273a7e77d8b0bebba05
       </map>
     </option>
   </component>
