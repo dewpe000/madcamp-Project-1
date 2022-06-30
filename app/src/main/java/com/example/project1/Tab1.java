@@ -18,8 +18,6 @@ import java.util.ArrayList;
 
 public class Tab1 extends Fragment {
 
-    View v;
-
     public Tab1() { }
 
     private ArrayList<MainData> arrayList;
@@ -30,7 +28,6 @@ public class Tab1 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.tab1, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rv);
@@ -51,6 +48,5 @@ public class Tab1 extends Fragment {
             }
         });
         return view;
-
     }
 }
