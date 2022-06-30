@@ -2,8 +2,12 @@ package com.example.project1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     Tab1 tab1;
     Tab2 tab2;
     Tab3 tab3;
+    ViewPager2 vPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,45 +30,88 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bottomNavi = findViewById(R.id.bottomNavi);
+        vPager = findViewById(R.id.viewPager2);
 
-        tab1 = new Tab1();
-        tab2 = new Tab2();
-        tab3 = new Tab3();
-        fragManager = getSupportFragmentManager();
-        fragTransaction = fragManager.beginTransaction();
-        fragTransaction.replace(R.id.main_frame, tab1);
-        fragTransaction.commit();
+        ViewPager2Adapter vpAdapter = new ViewPager2Adapter(this);
+        vPager.setAdapter(vpAdapter);
 
         bottomNavi.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-
                 int id = item.getItemId();
                 switch(id) {
                     case R.id.tabNavi1:
-                        fragManager = getSupportFragmentManager();
-                        fragTransaction = fragManager.beginTransaction();
-                        fragTransaction.replace(R.id.main_frame, tab1);
-                        fragTransaction.commit();
+                        vPager.setCurrentItem(0);
                         break;
                     case R.id.tabNavi2:
-                        fragManager = getSupportFragmentManager();
-                        fragTransaction = fragManager.beginTransaction();
-                        fragTransaction.replace(R.id.main_frame, tab2);
-                        fragTransaction.commit();
+                        vPager.setCurrentItem(1);
                         break;
                     case R.id.tabNavi3:
-                        fragManager = getSupportFragmentManager();
-                        fragTransaction = fragManager.beginTransaction();
-                        fragTransaction.replace(R.id.main_frame, tab3);
-                        fragTransaction.commit();
+                        vPager.setCurrentItem(2);
                         break;
                 }
-
                 return true;
             }
         });
 
+        vPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                switch (position) {
+                    case 0:
+                        bottomNavi.getMenu().findItem(R.id.tabNavi1).setChecked(true);
+                        break;
+                    case 1:
+                        bottomNavi.getMenu().findItem(R.id.tabNavi2).setChecked(true);
+                        break;
+                    case 2:
+                        bottomNavi.getMenu().findItem(R.id.tabNavi3).setChecked(true);
+                        break;
+                }
+            }
+        });
+
+//        tab1 = new Tab1();
+//        tab2 = new Tab2();
+//        tab3 = new Tab3();
+//        fragManager = getSupportFragmentManager();
+//        fragTransaction = fragManager.beginTransaction();
+//        fragTransaction.replace(R.id.main_frame, tab1);
+//        fragTransaction.commit();
+//
+//        bottomNavi.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//
+//                int id = item.getItemId();
+//                switch (id) {
+//                    case R.id.tabNavi1:
+//                        fragManager = getSupportFragmentManager();
+//                        fragTransaction = fragManager.beginTransaction();
+//                        fragTransaction.replace(R.id.main_frame, tab1);
+//                        fragTransaction.commit();
+//                        break;
+//                    case R.id.tabNavi2:
+//                        fragManager = getSupportFragmentManager();
+//                        fragTransaction = fragManager.beginTransaction();
+//                        fragTransaction.replace(R.id.main_frame, tab2);
+//                        fragTransaction.commit();
+//                        break;
+//                    case R.id.tabNavi3:
+//                        fragManager = getSupportFragmentManager();
+//                        fragTransaction = fragManager.beginTransaction();
+//                        fragTransaction.replace(R.id.main_frame, tab3);
+//                        fragTransaction.commit();
+//                        break;
+//                }
+//
+//                return true;
+//            }
+//        });
+
+
     }
+
 }
