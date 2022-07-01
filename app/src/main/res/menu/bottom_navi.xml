@@ -3,18 +3,18 @@
     <item
         android:id="@+id/tabNavi1"
         android:enabled="true"
-        android:icon="@drawable/contacts_icon"
+        android:icon="@drawable/baseline_contacts_24"
         android:title="화면1"/>
 
     <item
         android:id="@+id/tabNavi2"
         android:enabled="true"
-        android:icon="@drawable/gallery_icon"
+        android:icon="@drawable/baseline_collections_24"
         android:title="화면2"/>
 
     <item
         android:id="@+id/tabNavi3"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/baseline_quiz_24"
         android:title="화면3"/>
 </menu>

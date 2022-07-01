@@ -49,7 +49,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         holder.phoneNumber.setText(cData.getPhoneNumber());
 
 
-        holder.profile.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_launcher_foreground));
+        holder.profile.setImageDrawable(context.getResources().getDrawable(R.drawable.baseline_person_24));
         Bitmap profile = loadImage(context.getContentResolver(), cData.getPhotoId(), cData.getPersonId());
 
         if(profile != null) {
