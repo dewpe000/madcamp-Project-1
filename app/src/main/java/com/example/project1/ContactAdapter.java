@@ -54,7 +54,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
         if(profile != null) {
             if(Build.VERSION.SDK_INT >= 21) {
-             holder.profile.setBackground(new ShapeDrawable(new OvalShape()));
+//              holder.profile.setBackground(new ShapeDrawable(new OvalShape()));
                 holder.profile.setClipToOutline(true);
             }
             holder.profile.setImageBitmap(profile);
