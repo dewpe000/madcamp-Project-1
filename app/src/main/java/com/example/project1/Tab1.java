@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,28 +17,27 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 
 public class Tab1 extends Fragment {
 
-    public Tab1() { }
-
-    private ArrayList<ContactData> arrayList;
+    private ArrayList<ContactData> contactList;
     private ContactAdapter contactAdapter;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
+
+    public Tab1() { }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab1, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.rv);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv1);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        arrayList = new ArrayList<>();
-        contactAdapter = new ContactAdapter(getActivity(), arrayList);
+        contactList = new ArrayList<>();
+        contactAdapter = new ContactAdapter(getActivity(), contactList);
         recyclerView.setAdapter(contactAdapter);
 
         Button btn_add = (Button) view.findViewById(R.id.btn);
@@ -47,8 +45,8 @@ public class Tab1 extends Fragment {
             @Override
             public void onClick(View v) {
                 ArrayList<ContactData> contactList = getContactList();
-                arrayList.clear();
-                arrayList.addAll(contactList);
+                Tab1.this.contactList.clear();
+                Tab1.this.contactList.addAll(contactList);
                 contactAdapter.notifyDataSetChanged(); //새로고침
             }
         });

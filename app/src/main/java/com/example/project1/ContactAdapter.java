@@ -26,12 +26,12 @@ import java.util.ArrayList;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
 
-    private ArrayList<ContactData> arrayList;
+    private ArrayList<ContactData> contactList;
     private final Context context;
 
-    public ContactAdapter(Context context, ArrayList<ContactData> arrayList) {
+    public ContactAdapter(Context context, ArrayList<ContactData> contactList) {
         this.context = context;
-        this.arrayList = arrayList;
+        this.contactList = contactList;
     }
 
     @NonNull
@@ -44,7 +44,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     @Override
     public void onBindViewHolder(@NonNull ContactAdapter.ContactViewHolder holder, int position) {
-        ContactData cData = arrayList.get(position);
+        ContactData cData = contactList.get(position);
         holder.userName.setText(cData.getUserName());
         holder.phoneNumber.setText(cData.getPhoneNumber());
 
@@ -68,7 +68,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 String phoneNumber = holder.phoneNumber.getText().toString();
                 phoneNumber = "tel:" + phoneNumber;
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(phoneNumber));
@@ -87,7 +87,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     public void remove(int position) {
         try {
-            arrayList.remove(position);
+            contactList.remove(position);
             notifyItemRemoved(position); // 새로고침
         } catch (IndexOutOfBoundsException ex) {
             ex.printStackTrace();
@@ -96,7 +96,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     @Override
     public int getItemCount() {
-        return (null != arrayList ? arrayList.size() : 0);
+        return (null != contactList ? contactList.size() : 0);
     }
 
     public Bitmap loadImage(ContentResolver cr, long photoId, long personId) {
