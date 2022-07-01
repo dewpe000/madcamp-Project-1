@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     Tab2 tab2;
     Tab3 tab3;
     ViewPager2 vPager;
+    OnBackPressedListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,4 +86,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void setOnBackPressedListener(OnBackPressedListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(listener!=null){
+            listener.onBackPressed();
+        }else{
+            super.onBackPressed();
+        }
+    }
 }
