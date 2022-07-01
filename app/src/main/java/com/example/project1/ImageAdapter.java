@@ -47,7 +47,22 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 imageView.setVisibility(View.VISIBLE);
             }
         });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                remove(holder.getAdapterPosition());
+                return true;
+            }
+        });
 
+    }
+    public void remove(int position) {
+        try {
+            imageList.remove(position);
+            notifyItemRemoved(position); // 새로고침
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
