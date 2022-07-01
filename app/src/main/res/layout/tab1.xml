@@ -5,19 +5,41 @@
     android:id="@+id/swipeLayout"
     tools:context=".MainActivity" 
     android:layout_height="match_parent"
-     android:layout_width="match_parent">
+    android:layout_width="match_parent">
 
-     <androidx.recyclerview.widget.RecyclerView
+     <LinearLayout
          android:layout_width="match_parent"
          android:layout_height="match_parent"
-         android:id="@+id/rv"
-         android:scrollbarFadeDuration="0"
-         android:scrollbarSize="5dp"
-         android:scrollbarThumbVertical="@android:color/darker_gray"
-         android:scrollbars="vertical"
-         android:layout_weight="1">
+         android:orientation="vertical"
+         >
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Contact"
+              android:textStyle="bold"
+              android:textSize="30dp"
+              android:paddingLeft="15dp"
+              android:paddingTop="15dp"
+              android:paddingBottom="15dp"
+              ></TextView>
 
-     </androidx.recyclerview.widget.RecyclerView>
+          <androidx.recyclerview.widget.RecyclerView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:id="@+id/rv"
+              android:scrollbarFadeDuration="0"
+              android:scrollbarSize="5dp"
+              android:scrollbarThumbVertical="@android:color/darker_gray"
+              android:scrollbars="vertical"
+              android:layout_weight="1"
+              >
+
+          </androidx.recyclerview.widget.RecyclerView>
+
+     </LinearLayout>
+
+
+
 
 
 
