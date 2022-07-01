@@ -1,5 +1,6 @@
 package com.example.project1;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,7 @@ public class Tab1 extends Fragment {
     private ContactAdapter contactAdapter;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public Tab1() { }
 
@@ -32,7 +35,8 @@ public class Tab1 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab1, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.rv1);
+        swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
 
@@ -40,18 +44,23 @@ public class Tab1 extends Fragment {
         contactAdapter = new ContactAdapter(getActivity(), contactList);
         recyclerView.setAdapter(contactAdapter);
 
-        Button btn_add = (Button) view.findViewById(R.id.btn);
-        btn_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayList<ContactData> contactList = getContactList();
-                Tab1.this.contactList.clear();
-                Tab1.this.contactList.addAll(contactList);
-                contactAdapter.notifyDataSetChanged(); //새로고침
-            }
-        });
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        ArrayList<ContactData> contactList2 = getContactList();
+                        contactList.clear();
+                        contactList.addAll(contactList2);
+                        contactAdapter.notifyDataSetChanged();
+
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+//                    swipeRefreshLayout.setRefreshing(false);
+                }
+        );
+
         return view;
     }
+
 
     public ArrayList<ContactData> getContactList() {
         Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
