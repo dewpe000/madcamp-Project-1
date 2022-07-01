@@ -1,5 +1,6 @@
 package com.example.project1;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -28,12 +30,14 @@ public class Tab1 extends Fragment {
     private ContactAdapter contactAdapter;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab1, container, false);
 
+        swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -42,18 +46,64 @@ public class Tab1 extends Fragment {
         contactAdapter = new ContactAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(contactAdapter);
 
-        Button btn_add = (Button) view.findViewById(R.id.btn);
-        btn_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayList<ContactData> contactList = getContactList();
-                arrayList.clear();
-                arrayList.addAll(contactList);
-                contactAdapter.notifyDataSetChanged(); //새로고침
-            }
-        });
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        ArrayList<ContactData> contactList = getContactList();
+                        arrayList.clear();
+                        arrayList.addAll(contactList);
+                        contactAdapter.notifyDataSetChanged();
+
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+//                    swipeRefreshLayout.setRefreshing(false);
+                }
+        );
+
+//        Button btn_add = (Button) view.findViewById(R.id.btn);
+//        btn_add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ArrayList<ContactData> contactList = getContactList();
+//                arrayList.clear();
+//                arrayList.addAll(contactList);
+//                contactAdapter.notifyDataSetChanged(); //새로고침
+//            }
+//        });
         return view;
     }
+
+//    public interface OnListFragmentInteractionListener {
+//        void onListFragmentRefreshRequested();
+//    }
+//
+//    private OnListFragmentInteractionListener mListener;
+//
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        mListener = (OnListFragmentInteractionListener) context;
+//    }
+//
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        mListener = null;
+//    }
+//
+//    protected void updateEarthquakes() {
+//        if (mListener != null) mListener.onListFragmentRefreshRequested();
+//    }
+//
+//    @Override
+//    protected void onRefresh() {
+//        updateLayoutView();
+//        swipeRefreshLayout.setRefreshing(false);
+//    }
+//
+//    public void updateLayoutView() {
+//
+//    }
 
     public ArrayList<ContactData> getContactList() {
         Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
