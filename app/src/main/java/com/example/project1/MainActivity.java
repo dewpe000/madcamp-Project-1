@@ -9,10 +9,17 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.ContentResolver;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,47 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-//        tab1 = new Tab1();
-//        tab2 = new Tab2();
-//        tab3 = new Tab3();
-//        fragManager = getSupportFragmentManager();
-//        fragTransaction = fragManager.beginTransaction();
-//        fragTransaction.replace(R.id.main_frame, tab1);
-//        fragTransaction.commit();
-//
-//        bottomNavi.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//
-//
-//                int id = item.getItemId();
-//                switch (id) {
-//                    case R.id.tabNavi1:
-//                        fragManager = getSupportFragmentManager();
-//                        fragTransaction = fragManager.beginTransaction();
-//                        fragTransaction.replace(R.id.main_frame, tab1);
-//                        fragTransaction.commit();
-//                        break;
-//                    case R.id.tabNavi2:
-//                        fragManager = getSupportFragmentManager();
-//                        fragTransaction = fragManager.beginTransaction();
-//                        fragTransaction.replace(R.id.main_frame, tab2);
-//                        fragTransaction.commit();
-//                        break;
-//                    case R.id.tabNavi3:
-//                        fragManager = getSupportFragmentManager();
-//                        fragTransaction = fragManager.beginTransaction();
-//                        fragTransaction.replace(R.id.main_frame, tab3);
-//                        fragTransaction.commit();
-//                        break;
-//                }
-//
-//                return true;
-//            }
-//        });
-
-
     }
 
 }
