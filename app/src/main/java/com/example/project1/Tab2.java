@@ -73,6 +73,7 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
     @Override
     public void onBackPressed() {
         if (imageView.getVisibility() == View.VISIBLE) {
+            ((MainActivity)getActivity()).setOnBackPressedListener(this);
             imageView.setVisibility(View.GONE);
         }
     }
