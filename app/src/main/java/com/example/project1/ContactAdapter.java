@@ -18,12 +18,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
@@ -52,7 +50,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
 
         holder.profile.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_launcher_foreground));
-        Bitmap profile = loadContactPhoto(context.getContentResolver(), cData.getPhotoId(), cData.getPersonId());
+        Bitmap profile = loadImage(context.getContentResolver(), cData.getPhotoId(), cData.getPersonId());
 
         if(profile != null) {
             if(Build.VERSION.SDK_INT >= 21) {
@@ -66,8 +64,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                 holder.profile.setClipToOutline(false);
             }
         }
-
-
 
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +93,13 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             ex.printStackTrace();
         }
     }
-    public Bitmap loadContactPhoto(ContentResolver cr, long photoId, long personId) {
+
+    @Override
+    public int getItemCount() {
+        return (null != arrayList ? arrayList.size() : 0);
+    }
+
+    public Bitmap loadImage(ContentResolver cr, long photoId, long personId) {
 
         byte[] photoBytes = null;
         Uri photoUri = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI, photoId);
@@ -114,14 +116,14 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             c.close();
         }
         if (photoBytes != null) {
-            return resizingBitmap(BitmapFactory.decodeByteArray(photoBytes, 0, photoBytes.length));
+            return resizeBitmap(BitmapFactory.decodeByteArray(photoBytes, 0, photoBytes.length));
         }
         else
             Log.d("<<CONTACT_PHOTO>>", "second try also failed");
         return null;
     }
 
-    public Bitmap resizingBitmap(Bitmap oBitmap) {
+    public Bitmap resizeBitmap(Bitmap oBitmap) {
         if (oBitmap == null) {
             return null;
         }
@@ -150,14 +152,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         rBitmap = Bitmap.createScaledBitmap(oBitmap, (int)width, (int)height, true);
         return rBitmap;
     }
-
-
-
-    @Override
-    public int getItemCount() {
-        return (null != arrayList ? arrayList.size() : 0);
-    }
-
 
     public class ContactViewHolder extends RecyclerView.ViewHolder {
 
