@@ -128,7 +128,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
         float width = oBitmap.getWidth();
         float height = oBitmap.getHeight();
-        float resizing_size = 120;
+        float resizing_size = 200;
 
         Bitmap rBitmap = null;
 
