@@ -18,11 +18,19 @@
             android:paddingBottom="15dp"
             ></TextView>
 
+        <ImageView
+            android:id="@+id/bigImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:layout_weight="1"/>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv2"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_margin = "8dp"
+            android:layout_margin = "1dp"
             android:scrollbarFadeDuration="0"
             android:scrollbarSize="5dp"
             android:scrollbarThumbVertical="@android:color/darker_gray"
@@ -33,14 +41,6 @@
 
     </LinearLayout>
 
-
-    <ImageView
-        android:id="@+id/bigImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/ic_launcher"/>
 
 
 

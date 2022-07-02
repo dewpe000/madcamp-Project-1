@@ -1,4 +1,4 @@
-package com.example.project1;
+package com.example.project1.Tab3;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.project1.R;
 
 public class Tab3 extends Fragment {
 

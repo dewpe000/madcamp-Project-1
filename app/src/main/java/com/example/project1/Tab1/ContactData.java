@@ -1,4 +1,4 @@
-package com.example.project1;
+package com.example.project1.Tab1;
 
 public class ContactData {
 

@@ -1,26 +1,28 @@
-package com.example.project1;
+package com.example.project1.Main;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.ContentResolver;
-import android.database.Cursor;
-import android.net.Uri;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
+import com.example.project1.Tab2.OnBackPressedListener;
+import com.example.project1.R;
+import com.example.project1.Tab1.Tab1;
+import com.example.project1.Tab2.Tab2;
+import com.example.project1.Tab3.Tab3;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
     ViewPager2 vPager;
     OnBackPressedListener listener;
 
+    String[] permissionList = {
+            Manifest.permission.READ_CONTACTS
+    };
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavi = findViewById(R.id.bottomNavi);
         vPager = findViewById(R.id.viewPager2);
 
-        ViewPager2Adapter vpAdapter = new ViewPager2Adapter(this);
+        ViewPager2Adapter vpAdapter = (new ViewPager2Adapter(this));
         vPager.setAdapter(vpAdapter);
 
         bottomNavi.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -83,6 +90,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        for(String permssion : permissionList) {
+            int check = checkCallingOrSelfPermission(permssion);
+
+            if(check == PackageManager.PERMISSION_DENIED) {
+                requestPermissions(permissionList, 0);
+            }
+
+        }
+
     }
 
 
@@ -100,4 +117,22 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 0) {
+            for(int i = 0; i < grantResults.length; i++) {
+                if(grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "앱 권한을 설정하세요", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            }
+
+        }
+    }
+
 }

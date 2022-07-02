@@ -1,15 +1,17 @@
-package com.example.project1;
+package com.example.project1.Tab2;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.project1.Tab2.ImageData;
+import com.example.project1.Main.MainActivity;
+import com.example.project1.R;
 
 import java.util.ArrayList;
 
@@ -17,6 +19,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     private ArrayList<ImageData> imageList;
     private final Context context;
+    private int currPos;
 
     public ImageAdapter(Context context, ArrayList<ImageData> imageList) {
         this.context = context;
@@ -42,15 +45,25 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ImageView imageView = ((Tab2) Tab2.fragment).getImageView();
+                Tab2 frag = ((Tab2) Tab2.fragment);
+                ImageView imageView = frag.getImageView();
+                currPos = position;
                 imageView.setImageResource(iData.getImageResource());
                 imageView.setVisibility(View.VISIBLE);
+                ((MainActivity)frag.getActivity()).setOnBackPressedListener(frag);
             }
         });
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                remove(holder.getAdapterPosition());
+                remove(position);
+
+                if(position == currPos) {
+                    Tab2 frag = ((Tab2) Tab2.fragment);
+                    ImageView imageView = frag.getImageView();
+                    imageView.setVisibility(View.GONE);
+                }
+
                 return true;
             }
         });

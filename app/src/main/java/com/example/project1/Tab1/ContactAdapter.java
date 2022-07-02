@@ -1,4 +1,4 @@
-package com.example.project1;
+package com.example.project1.Tab1;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
@@ -21,6 +19,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.project1.Tab1.ContactData;
+import com.example.project1.R;
 
 import java.util.ArrayList;
 
@@ -79,7 +80,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                remove(holder.getAdapterPosition());
+                remove(position);
                 return true;
             }
         });
