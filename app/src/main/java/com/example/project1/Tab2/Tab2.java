@@ -17,15 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.project1.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Tab2 extends Fragment implements OnBackPressedListener {
@@ -38,7 +35,7 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
 
     private ImageView imageView;
 
-    private Button floatBtn;
+    private FloatingActionButton loadBtn;
 
     public static Fragment fragment;
 
@@ -59,12 +56,12 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
         imageView.setVisibility(View.GONE);
 
 
-        floatBtn = (Button) view.findViewById(R.id.floatBtn);
+        loadBtn = (FloatingActionButton) view.findViewById(R.id.loadBtn);
 
-        floatBtn.setOnClickListener(new View.OnClickListener() {
+        loadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageList.clear();
+                //imageList.clear();
                 imageView.setVisibility(View.GONE);
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
@@ -100,7 +97,7 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
         if(data == null){   // 어떤 이미지도 선택하지 않은 경우
             Toast.makeText(getContext(), "이미지를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
         }
-        else{   // 이미지를 하나라도 선택한 경우
+        else{
 
             if(data.getClipData() == null){     // 이미지를 하나만 선택한 경우
                 Log.e("single choice: ", String.valueOf(data.getData()));
@@ -112,7 +109,7 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
                 gridLayoutManager = new GridLayoutManager(getActivity(),3 );
                 recyclerView.setLayoutManager(gridLayoutManager);
             }
-            else{      // 이미지를 여러장 선택한 경우
+            else{
                 ClipData clipData = data.getClipData();
                 Log.e("clipData", String.valueOf(clipData.getItemCount()));
 
