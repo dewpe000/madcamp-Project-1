@@ -1,9 +1,13 @@
 package com.example.project1.Tab3;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.sax.StartElementListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,14 +17,47 @@ import com.example.project1.R;
 
 public class Tab3 extends Fragment {
 
-    View v;
+    View view;
+
+    Button tab3Btn1;
+    Button tab3Btn2;
+    Button tab3Btn3;
 
     public Tab3() { }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.tab3, container, false);
-        return v;
+        view = inflater.inflate(R.layout.tab3, container, false);
+
+        tab3Btn1 = view.findViewById(R.id.tab3Btn1);
+        tab3Btn2 = view.findViewById(R.id.tab3Btn2);
+        tab3Btn3 = view.findViewById(R.id.tab3Btn3);
+
+        tab3Btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), RouletteActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tab3Btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), LotteryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tab3Btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), DrawActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 }

@@ -22,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Tab3.RouletteActivity"/>
+        <activity android:name=".Tab3.LotteryActivity"/>
+        <activity android:name=".Tab3.DrawActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
