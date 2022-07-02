@@ -1,10 +1,12 @@
 package com.example.project1.Tab2;
 
+import android.net.Uri;
+
 public class ImageData {
     private String imageName;
-    private int imageResource;
+    private Uri imageResource;
 
-    public ImageData(String imageName, int imageResource) {
+    public ImageData(String imageName, Uri imageResource) {
         this.imageName = imageName;
         this.imageResource = imageResource;
     }
@@ -17,11 +19,11 @@ public class ImageData {
         this.imageName = imageName;
     }
 
-    public int getImageResource() {
+    public Uri getImageResource() {
         return imageResource;
     }
 
-    public void setImageResource(int imageResource) {
+    public void setImageResource(Uri imageResource) {
         this.imageResource = imageResource;
     }
 }

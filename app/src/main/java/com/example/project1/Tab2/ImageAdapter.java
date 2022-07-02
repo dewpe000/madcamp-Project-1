@@ -38,7 +38,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         ImageData iData = imageList.get(position);
 
-        holder.image.setImageResource(iData.getImageResource());
+        holder.image.setImageURI(iData.getImageResource());
         //holder.imageName.setText(iData.getImageName());
 
         holder.itemView.setTag(position);
@@ -48,7 +48,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 Tab2 frag = ((Tab2) Tab2.fragment);
                 ImageView imageView = frag.getImageView();
                 currPos = position;
-                imageView.setImageResource(iData.getImageResource());
+                imageView.setImageURI(iData.getImageResource());
                 imageView.setVisibility(View.VISIBLE);
                 ((MainActivity)frag.getActivity()).setOnBackPressedListener(frag);
             }
@@ -56,7 +56,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                remove(position);
+                remove(holder.getBindingAdapterPosition());
 
                 if(position == currPos) {
                     Tab2 frag = ((Tab2) Tab2.fragment);

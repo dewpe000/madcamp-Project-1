@@ -34,7 +34,7 @@ public class BigImageAdapter extends RecyclerView.Adapter<BigImageAdapter.biView
 
     @Override
     public void onBindViewHolder(@NonNull biViewHolder holder, int position) {
-        holder.imageView.setImageResource(imageList.get(position).getImageResource());
+        holder.imageView.setImageURI(imageList.get(position).getImageResource());
     }
 
     @Override
