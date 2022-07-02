@@ -23,9 +23,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Tab3.RouletteActivity"/>
-        <activity android:name=".Tab3.LotteryActivity"/>
-        <activity android:name=".Tab3.DrawActivity"/>
+        <activity android:name=".Tab3.Roulette.RouletteActivity"/>
+        <activity android:name=".Tab3.Lottery.LotteryActivity"/>
+        <activity android:name=".Tab3.Draw.DrawActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.READ_CONTACTS"/>

@@ -1,5 +1,6 @@
 package com.example.project1.Tab1;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     private ArrayList<ContactData> contactList;
     private final Context context;
 
+    private ContactAdapter.ContactViewHolder prevHolder;
+
     public ContactAdapter(Context context, ArrayList<ContactData> contactList) {
         this.context = context;
         this.contactList = contactList;
@@ -44,11 +48,11 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ContactAdapter.ContactViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ContactAdapter.ContactViewHolder holder, @SuppressLint("RecyclerView") int position) {
         ContactData cData = contactList.get(position);
         holder.userName.setText(cData.getUserName());
         holder.phoneNumber.setText(cData.getPhoneNumber());
-
+        holder.relativeLayout.setVisibility(View.GONE);
 
         holder.profile.setImageDrawable(context.getResources().getDrawable(R.drawable.baseline_person_24));
         Bitmap profile = loadImage(context.getContentResolver(), cData.getPhotoId(), cData.getPersonId());
@@ -66,8 +70,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             }
         }
 
-        holder.itemView.setTag(position);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.callImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String phoneNumber = holder.phoneNumber.getText().toString();
@@ -76,6 +79,29 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                 context.startActivity(intent);
             }
         });
+
+        holder.messageImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(Intent.ACTION_SEND, Uri.parse(phoneNumber));
+                //context.startActivity(intent);
+            }
+        });
+
+        holder.itemView.setTag(position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.relativeLayout.setVisibility(View.VISIBLE);
+
+                if(prevHolder != null) {
+                    prevHolder.relativeLayout.setVisibility(View.GONE);
+                }
+                prevHolder = holder;
+            }
+        });
+
+
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -159,12 +185,18 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         protected ImageView profile;
         protected TextView userName;
         protected TextView phoneNumber;
+        protected RelativeLayout relativeLayout;
+        protected ImageView callImage;
+        protected ImageView messageImage;
 
         public ContactViewHolder(@NonNull View itemView) {
             super(itemView);
             this.profile = (ImageView) itemView.findViewById(R.id.profile);
             this.userName = (TextView) itemView.findViewById(R.id.userName);
             this.phoneNumber = (TextView) itemView.findViewById(R.id.phoneNumber);
+            this.relativeLayout = (RelativeLayout) itemView.findViewById(R.id.callMessage);
+            this.callImage = (ImageView) itemView.findViewById(R.id.callImage);
+            this.messageImage = (ImageView) itemView.findViewById(R.id.messageImage);
         }
     }
 }
