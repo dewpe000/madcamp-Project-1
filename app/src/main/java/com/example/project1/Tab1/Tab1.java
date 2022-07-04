@@ -47,14 +47,12 @@ public class Tab1 extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-                        ArrayList<ContactData> contactList2 = getContactList();
                         contactList.clear();
-                        contactList.addAll(contactList2);
+                        contactList.addAll(getContactList());
                         contactAdapter.notifyDataSetChanged();
 
                         swipeRefreshLayout.setRefreshing(false);
                     }
-//                    swipeRefreshLayout.setRefreshing(false);
                 }
         );
 
@@ -86,7 +84,6 @@ public class Tab1 extends Fragment {
                 ContactData currData = new ContactData(photoId, personId, cursor.getString(1), cursor.getString(0));
 
                 contactList.add(currData);
-                //Log.d("<<CONTACTS>>", "name=" + myData.getUserName() + ", phone=" + myData.getPhoneNumber());
 
             } while (cursor.moveToNext());
         }

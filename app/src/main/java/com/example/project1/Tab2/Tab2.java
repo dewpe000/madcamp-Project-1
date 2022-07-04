@@ -50,6 +50,10 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
 
         imageList = new ArrayList<>();
 
+        imageAdapter = new ImageAdapter(getActivity(), imageList);
+        recyclerView.setAdapter(imageAdapter);
+        gridLayoutManager = new GridLayoutManager(getActivity(),3 );
+        recyclerView.setLayoutManager(gridLayoutManager);
 
 
         imageView = view.findViewById(R.id.bigImage);
@@ -68,8 +72,11 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
                 intent.setType("image/*");
                 intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), 100);
+                imageAdapter.notifyDataSetChanged();
             }
         });
+
+
 
         return view;
     }
@@ -94,40 +101,31 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(data == null){   // 어떤 이미지도 선택하지 않은 경우
+        if(data == null){
             Toast.makeText(getContext(), "이미지를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
         }
         else{
 
-            if(data.getClipData() == null){     // 이미지를 하나만 선택한 경우
+            if(data.getClipData() == null){
                 Log.e("single choice: ", String.valueOf(data.getData()));
                 Uri imageUri = data.getData();
                 ImageData imageData = new ImageData("name", imageUri);
                 imageList.add(imageData);
-                imageAdapter = new ImageAdapter(getActivity(), imageList);
-                recyclerView.setAdapter(imageAdapter);
-                gridLayoutManager = new GridLayoutManager(getActivity(),3 );
-                recyclerView.setLayoutManager(gridLayoutManager);
             }
             else{
                 ClipData clipData = data.getClipData();
                 Log.e("clipData", String.valueOf(clipData.getItemCount()));
 
-                    for (int i = 0; i < clipData.getItemCount(); i++){
-                        Uri imageUri = clipData.getItemAt(i).getUri();
-                        ImageData imageData = new ImageData("name", imageUri);
-                        try {
-                            imageList.add(imageData);
-
-                        } catch (Exception e) {
-                            Log.e("OnActivityResult", "File select error", e);
-                        }
+                for (int i = 0; i < clipData.getItemCount(); i++){
+                    Uri imageUri = clipData.getItemAt(i).getUri();
+                    ImageData imageData = new ImageData("name", imageUri);
+                    try {
+                        imageList.add(imageData);
                     }
-                    imageAdapter = new ImageAdapter(getActivity(), imageList);
-                    recyclerView.setAdapter(imageAdapter);
-                    gridLayoutManager = new GridLayoutManager(getActivity(),3 );
-                    recyclerView.setLayoutManager(gridLayoutManager);
-
+                    catch (Exception e) {
+                        Log.e("OnActivityResult", "File select error", e);
+                    }
+                }
             }
         }
     }

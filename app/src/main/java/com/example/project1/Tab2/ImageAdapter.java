@@ -1,5 +1,6 @@
 package com.example.project1.Tab2;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.project1.Tab2.ImageData;
 import com.example.project1.Main.MainActivity;
 import com.example.project1.R;
 
@@ -29,13 +29,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_image, parent, false);
         ImageViewHolder holder = new ImageViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ImageViewHolder holder, @SuppressLint("RecyclerView") int position) {
         ImageData iData = imageList.get(position);
 
         holder.image.setImageURI(iData.getImageResource());
@@ -69,6 +69,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         });
 
     }
+
+    @Override
+    public int getItemCount() {
+        return (null != imageList ? imageList.size() : 0);
+    }
+
+
     public void remove(int position) {
         try {
             imageList.remove(position);
@@ -76,11 +83,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         } catch (IndexOutOfBoundsException ex) {
             ex.printStackTrace();
         }
-    }
-
-    @Override
-    public int getItemCount() {
-        return (null != imageList ? imageList.size() : 0);
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
