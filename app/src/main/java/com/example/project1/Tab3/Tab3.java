@@ -2,10 +2,12 @@ package com.example.project1.Tab3;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -70,6 +72,9 @@ public class Tab3 extends Fragment {
                 startActivity(intent);
             }
         });
+
+        ImageView ivRSP = (ImageView) view.findViewById(R.id.ivRSP);
+        ivRSP.setColorFilter(R.color.title, PorterDuff.Mode.SRC_IN);
 
         return view;
     }
