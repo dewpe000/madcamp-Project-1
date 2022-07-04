@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.project1.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class LotteryActivity extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class LotteryActivity extends AppCompatActivity {
     private Button lotteryClear;
 
     private ArrayList<String> lotteryList;
+    private ArrayList<Integer> colorList;
     private LotteryAdapter lotteryAdapter;
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
@@ -53,8 +55,9 @@ public class LotteryActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.rvLottery);
 
         lotteryList = new ArrayList<>();
+        colorList = new ArrayList<>();
 
-        lotteryAdapter = new LotteryAdapter(this, lotteryList);
+        lotteryAdapter = new LotteryAdapter(this, lotteryList, colorList);
         recyclerView.setAdapter(lotteryAdapter);
         gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -71,10 +74,12 @@ public class LotteryActivity extends AppCompatActivity {
                     lotteryList.add(newItem);
 
                     int red = random.nextInt(255);
-                    int blue = random.nextInt(255);
+                    int blue = random.nextInt(100);
                     int green = random.nextInt(255);
 
-                    //Color color = Color.rgb(red, green, blue);
+                    int color = Color.rgb(red, green, blue);
+
+                    colorList.add(color);
 
                     lotteryAdapter.notifyDataSetChanged();
 
@@ -123,6 +128,7 @@ public class LotteryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 lotteryList.clear();
+                lotteryAdd.setText("ADD");
                 lotteryAdapter.notifyDataSetChanged();
             }
         });
@@ -158,5 +164,6 @@ public class LotteryActivity extends AppCompatActivity {
         for(int i = 0; i < winnerList.size(); i++)
             lotteryList.set(winnerList.get(i), "꽝");
 
+        Collections.sort(colorList);
     }
 }

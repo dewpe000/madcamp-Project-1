@@ -26,13 +26,14 @@ public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryV
 
     private ArrayList<String> lotteryDataList;
     private ArrayList<LotteryViewHolder> lotteryList = new ArrayList<>();
-    private ArrayList<Color> colorList;
+    private ArrayList<Integer> colorList;
     private final Context context;
 
 
-    public LotteryAdapter(Context context, ArrayList<String> lotteryDataList) {
+    public LotteryAdapter(Context context, ArrayList<String> lotteryDataList, ArrayList<Integer> colorList) {
         this.context = context;
         this.lotteryDataList = lotteryDataList;
+        this.colorList = colorList;
     }
 
 
@@ -47,13 +48,14 @@ public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryV
     @Override
     public void onBindViewHolder(@NonNull LotteryAdapter.LotteryViewHolder holder, int position) {
         String lotteryVal = lotteryDataList.get(position);
+        int color = colorList.get(position);
 
         holder.lotteryValue.setText(lotteryVal);
 
         holder.lotteryValue.setVisibility(View.INVISIBLE);
         lotteryList.add(holder);
 
-        holder.lotteryImage.setColorFilter(Color.parseColor("#ffff0000"), PorterDuff.Mode.SRC_IN);
+        holder.lotteryImage.setColorFilter(color, PorterDuff.Mode.SRC_IN);
         holder.lotteryImage.setImageResource(R.drawable.icon_lottery);
 
         holder.itemView.setTag(position);
