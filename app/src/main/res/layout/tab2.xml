@@ -25,15 +25,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:adjustViewBounds="true" />
+            android:adjustViewBounds="true"
+            android:background="#000000"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="2"
             android:scrollbarFadeDuration="0"
             android:scrollbarSize="5dp"
             android:scrollbarThumbVertical="@android:color/darker_gray"
