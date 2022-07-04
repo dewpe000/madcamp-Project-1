@@ -1,5 +1,6 @@
 package com.example.project1.Tab3.Draw;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,19 +21,19 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class DrawActivity extends AppCompatActivity {
+
     private ArrayList<String> items;
     private RecyclerView recyclerView;
     private TextView textView;
     RandomAdapter adapter;
 
-    String point;
-    int size = 1;
     int val = 0;
+    Integer num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_draw);
 
         items = new ArrayList<>();
 
@@ -44,36 +46,137 @@ public class DrawActivity extends AppCompatActivity {
         textView = findViewById(R.id.bigText);
         textView.setVisibility(View.GONE);
 
-        Button add = findViewById(R.id.edit_btn);
+        Button add = findViewById(R.id.add_btn);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText editText = findViewById(R.id.newItem);
-                String newitem = editText.getText().toString();
-                if (newitem == "") {
-                    Toast.makeText(DrawActivity.this, "empty input", Toast.LENGTH_SHORT).show();
-                } else {
-                    items.add(newitem);
+                AlertDialog.Builder ad = new AlertDialog.Builder(DrawActivity.this);
 
-                    editText.setText("");
+                ad.setTitle("Add?");
 
-                    Toast.makeText(DrawActivity.this, newitem, Toast.LENGTH_SHORT).show();
+                final EditText editText = new EditText(DrawActivity.this);
+                ad.setView(editText);
 
-                    adapter.notifyDataSetChanged();
-                }
+                ad.setPositiveButton("add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String newitem = editText.getText().toString();
+
+                        if (newitem == "") {
+                            Toast.makeText(DrawActivity.this, "empty input", Toast.LENGTH_SHORT).show();
+                        } else {
+                            items.add(newitem);
+
+                            editText.setText("");
+
+                            Toast.makeText(DrawActivity.this, newitem, Toast.LENGTH_SHORT).show();
+
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                ad.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                ad.show();
             }
         });
 
-        Button roll = findViewById(R.id.rand_btn);
+        Button roll = findViewById(R.id.roll_btn);
         roll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText editText = findViewById(R.id.num);
-                Integer num = Integer.parseInt(editText.getText().toString());
+
+                AlertDialog.Builder ad = new AlertDialog.Builder(DrawActivity.this);
+
+                ad.setTitle("Roll?");
+
+                final EditText editText = new EditText(DrawActivity.this);
+                ad.setView(editText);
+
+                ad.setPositiveButton("roll", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String newitem = editText.getText().toString();
+
+                        if (newitem == "") {
+                            Toast.makeText(DrawActivity.this, "empty input", Toast.LENGTH_SHORT).show();
+                        } else {
+                            num = Integer.parseInt(newitem);
+
+                            ArrayList<String> chosen = new ArrayList<>();
+
+                            Random random = new Random();
+
+                            int count = 0;
+                            String currItem;
+
+                            while(true) {
+                                val = random.nextInt(items.size());
+
+                                currItem = items.get(val);
+
+                                if(chosen.contains(currItem)) {
+                                    continue;
+                                }
+
+                                chosen.add(currItem);
+                                count++;
+
+                                if(count == num)
+                                    break;
+                            }
+
+                            String result = "";
+
+                            for (int n = 0; n < chosen.size(); n++) {
+                                result = result + chosen.get(n) + '\n';
+                            }
+
+                            textView.setText(result);
+                            textView.setVisibility(View.VISIBLE);
+                        }
+
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                ad.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                ad.show();
+
+            }
+        });
+
+        Button restart = findViewById(R.id.restart_btn);
+        restart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                items.clear();
+                adapter.notifyDataSetChanged();
+                textView.setVisibility(View.GONE);
+            }
+        });
+
+        Button reroll = findViewById(R.id.reroll_btn);
+        reroll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Random random = new Random();
 
                 ArrayList<String> chosen = new ArrayList<>();
-
-                Random random = new Random();
 
                 int count = 0;
                 String currItem;
@@ -96,8 +199,8 @@ public class DrawActivity extends AppCompatActivity {
 
                 String result = "";
 
-                for (int i = 0; i < chosen.size(); i++) {
-                    result = result + chosen.get(i) + '\n';
+                for (int n = 0; n < chosen.size(); n++) {
+                    result = result + chosen.get(n) + '\n';
                 }
 
                 textView.setText(result);
@@ -106,4 +209,6 @@ public class DrawActivity extends AppCompatActivity {
         });
 
     }
+
+
 }
