@@ -130,6 +130,7 @@ public class RSPActivity extends AppCompatActivity {
                 imageView1.setImageResource(R.drawable.init_rsp);
                 imageView2.setImageResource(R.drawable.init_rsp);
 //                play.setVisibility(View.VISIBLE);
+                play.setText("play");
             }
         });
 
