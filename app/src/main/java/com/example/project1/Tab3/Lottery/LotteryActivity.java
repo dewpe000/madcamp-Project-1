@@ -56,7 +56,7 @@ public class LotteryActivity extends AppCompatActivity {
 
         lotteryAdapter = new LotteryAdapter(this, lotteryList);
         recyclerView.setAdapter(lotteryAdapter);
-        gridLayoutManager = new GridLayoutManager(this, 4);
+        gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
 
         random = new Random();
@@ -69,7 +69,15 @@ public class LotteryActivity extends AppCompatActivity {
                 if(lotteryAdd.getText().equals("ADD")) {
                     String newItem = new String("통과");
                     lotteryList.add(newItem);
+
+                    int red = random.nextInt(255);
+                    int blue = random.nextInt(255);
+                    int green = random.nextInt(255);
+
+                    //Color color = Color.rgb(red, green, blue);
+
                     lotteryAdapter.notifyDataSetChanged();
+
                 }
                 else {
                     lotteryAdapter.setAllVisible();

@@ -1,5 +1,6 @@
 package com.example.project1.Tab3;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.project1.R;
 import com.example.project1.Tab3.Draw.DrawActivity;
 import com.example.project1.Tab3.Lottery.LotteryActivity;
+import com.example.project1.Tab3.RSP.RSPActivity;
 import com.example.project1.Tab3.Roulette.RouletteActivity;
 
 public class Tab3 extends Fragment {
@@ -23,6 +25,7 @@ public class Tab3 extends Fragment {
     RelativeLayout tab3RL1;
     RelativeLayout tab3RL2;
     RelativeLayout tab3RL3;
+    RelativeLayout tab3RL4;
 
     public Tab3() { }
 
@@ -31,9 +34,10 @@ public class Tab3 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.tab3, container, false);
 
-        tab3RL1 = view.findViewById(R.id.tab3RL1);
-        tab3RL2 = view.findViewById(R.id.tab3RL2);
-        tab3RL3 = view.findViewById(R.id.tab3RL3);
+        tab3RL1 = (RelativeLayout) view.findViewById(R.id.tab3RL1);
+        tab3RL2 = (RelativeLayout) view.findViewById(R.id.tab3RL2);
+        tab3RL3 = (RelativeLayout) view.findViewById(R.id.tab3RL3);
+        tab3RL4 = (RelativeLayout) view.findViewById(R.id.tab3RL4);
 
         tab3RL1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +59,14 @@ public class Tab3 extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), DrawActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tab3RL4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), RSPActivity.class);
                 startActivity(intent);
             }
         });

@@ -2,6 +2,7 @@ package com.example.project1.Tab3.Lottery;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +25,8 @@ import java.util.ArrayList;
 public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryViewHolder> {
 
     private ArrayList<String> lotteryDataList;
-    private ArrayList<TextView> lotteryList = new ArrayList<>();
+    private ArrayList<LotteryViewHolder> lotteryList = new ArrayList<>();
+    private ArrayList<Color> colorList;
     private final Context context;
 
 
@@ -49,9 +51,10 @@ public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryV
         holder.lotteryValue.setText(lotteryVal);
 
         holder.lotteryValue.setVisibility(View.INVISIBLE);
-        lotteryList.add(holder.lotteryValue);
+        lotteryList.add(holder);
 
-        holder.lotteryImage.setColorFilter(Color.parseColor("#55ff0000"));
+        holder.lotteryImage.setColorFilter(Color.parseColor("#ffff0000"), PorterDuff.Mode.SRC_IN);
+        holder.lotteryImage.setImageResource(R.drawable.icon_lottery);
 
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +63,7 @@ public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryV
                 LotteryDialog dlg = new LotteryDialog(view.getContext(), (lotteryVal + "!!!!!"));
                 dlg.show();
                 holder.lotteryValue.setVisibility(View.VISIBLE);
+                holder.lotteryImage.setImageResource(R.drawable.icon_fold_paper);
             }
         });
     }
@@ -86,7 +90,8 @@ public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryV
 
     public void setAllVisible() {
         for(int i = 0; i < lotteryList.size(); i++) {
-            lotteryList.get(i).setVisibility(View.VISIBLE);
+            lotteryList.get(i).lotteryValue.setVisibility(View.VISIBLE);
+            lotteryList.get(i).lotteryImage.setImageResource(R.drawable.icon_fold_paper);
         }
     }
 

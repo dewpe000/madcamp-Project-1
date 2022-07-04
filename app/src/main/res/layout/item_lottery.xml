@@ -6,8 +6,8 @@
 
     <RelativeLayout
         android:id="@+id/lottery"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:gravity="center"
         >
 
@@ -25,8 +25,7 @@
         <ImageView
             android:id="@+id/lotteryImage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/icon_lottery"/>
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 
