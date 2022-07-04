@@ -33,19 +33,21 @@
                 android:id="@+id/tab3RL1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="35dp"
                     android:text="Roulette"
-                    android:textSize="50sp" />
+                    android:textStyle="italic"
+                    android:textSize="30sp" />
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/icon_roulette" />
             </RelativeLayout>
@@ -62,19 +64,21 @@
                 android:id="@+id/tab3RL2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="50dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="35dp"
                     android:text="Lottery"
-                    android:textSize="50sp" />
+                    android:textStyle="italic"
+                    android:textSize="30sp" />
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/icon_lottery" />
             </RelativeLayout>
@@ -91,19 +95,21 @@
                 android:id="@+id/tab3RL3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="50dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginStart="10dp"
                     android:text="Draw"
-                    android:textSize="50sp" />
+                    android:textStyle="italic"
+                    android:textSize="30sp" />
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/icon_draw" />
             </RelativeLayout>
