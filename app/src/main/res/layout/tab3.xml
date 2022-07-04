@@ -28,10 +28,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
                 android:gravity="center"
-                android:layout_margin="30dp">
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/tab3Btn1"
@@ -41,8 +44,8 @@
                     android:layout_weight="1"
                     android:backgroundTint="@android:color/darker_gray"
                     android:text="Roulette"
-                    android:textStyle="bold"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/tab3Btn2"
@@ -52,9 +55,8 @@
                     android:layout_weight="1"
                     android:backgroundTint="@android:color/darker_gray"
                     android:text="Lottery"
-                    android:textStyle="bold"
                     android:textSize="30dp"
-                    />
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/tab3Btn3"
@@ -64,8 +66,8 @@
                     android:layout_weight="1"
                     android:backgroundTint="@android:color/darker_gray"
                     android:text="Draw"
-                    android:textStyle="bold"
-                    android:textSize="30dp"/>
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

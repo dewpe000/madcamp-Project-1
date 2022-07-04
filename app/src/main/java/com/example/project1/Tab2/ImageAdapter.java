@@ -2,12 +2,14 @@ package com.example.project1.Tab2;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project1.Main.MainActivity;
@@ -56,13 +58,32 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                remove(holder.getBindingAdapterPosition());
 
-                if(position == currPos) {
-                    Tab2 frag = ((Tab2) Tab2.fragment);
-                    ImageView imageView = frag.getImageView();
-                    imageView.setVisibility(View.GONE);
-                }
+                AlertDialog.Builder ab = new AlertDialog.Builder(view.getContext());
+                ab.setTitle("Delete");
+                ab.setMessage("Delete selected photo?");
+                ab.setPositiveButton("no", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                ab.setNegativeButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        remove(holder.getBindingAdapterPosition());
+
+                        if(position == currPos) {
+                            Tab2 frag = ((Tab2) Tab2.fragment);
+                            ImageView imageView = frag.getImageView();
+                            imageView.setVisibility(View.GONE);
+                        }
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                ab.show();
 
                 return true;
             }
