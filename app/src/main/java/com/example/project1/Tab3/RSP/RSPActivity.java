@@ -93,6 +93,7 @@ public class RSPActivity extends AppCompatActivity {
         });
 
         Button play = findViewById(R.id.play_btn);
+        play.setText("play");
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -80,7 +80,7 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
         return view;
     }
 
-    public ImageView getPhotoView() {
+    public PhotoView getPhotoView() {
         return photoView;
     }
 
