@@ -60,13 +60,22 @@ public class LotteryActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
 
         random = new Random();
+        lotteryAdd.setText("ADD");
 
         lotteryAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newItem = new String("통과");
-                lotteryList.add(newItem);
-                lotteryAdapter.notifyDataSetChanged();
+
+                if(lotteryAdd.getText().equals("ADD")) {
+                    String newItem = new String("통과");
+                    lotteryList.add(newItem);
+                    lotteryAdapter.notifyDataSetChanged();
+                }
+                else {
+                    lotteryAdapter.setAllVisible();
+                    lotteryAdd.setText("ADD");
+
+                }
             }
         });
 
@@ -98,6 +107,7 @@ public class LotteryActivity extends AppCompatActivity {
 
 
                 dlg.show();
+                lotteryAdd.setText("OPEN");
             }
         });
 

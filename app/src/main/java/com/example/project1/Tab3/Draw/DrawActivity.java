@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,12 +32,15 @@ public class DrawActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_draw);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         items = new ArrayList<>();
 
-        recyclerView = (RecyclerView) findViewById(R.id.rv2);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = (RecyclerView) findViewById(R.id.rvDraw);
+        recyclerView.setLayoutManager(new LinearLayoutManager(DrawActivity.this));
 
         adapter = new RandomAdapter(DrawActivity.this, items);
         recyclerView.setAdapter(adapter);

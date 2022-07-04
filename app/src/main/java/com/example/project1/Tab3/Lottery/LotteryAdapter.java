@@ -77,4 +77,10 @@ public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryV
         }
     }
 
+    public void setAllVisible() {
+        for(int i = 0; i < lotteryList.size(); i++) {
+            lotteryList.get(i).setVisibility(View.VISIBLE);
+        }
+    }
+
 }

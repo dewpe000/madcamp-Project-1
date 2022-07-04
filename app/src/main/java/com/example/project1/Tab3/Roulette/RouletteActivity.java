@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bluehomestudio.luckywheel.LuckyWheel;
@@ -36,7 +37,10 @@ public class RouletteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_roulette);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         luckyWheel = findViewById(R.id.luck_wheel);
 
