@@ -22,7 +22,7 @@
                 android:paddingBottom="15dp"
                 android:text="Lottery"
                 android:textSize="30dp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold" />
             <Button
                 android:id="@+id/lotteryClear"
                 android:background="@drawable/ic_baseline_refresh_24"
