@@ -72,7 +72,6 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
                 intent.setType("image/*");
                 intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), 100);
-                imageAdapter.notifyDataSetChanged();
             }
         });
 
@@ -111,6 +110,7 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
                 Uri imageUri = data.getData();
                 ImageData imageData = new ImageData("name", imageUri);
                 imageList.add(imageData);
+                imageAdapter.notifyDataSetChanged();
             }
             else{
                 ClipData clipData = data.getClipData();
@@ -125,6 +125,7 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
                     catch (Exception e) {
                         Log.e("OnActivityResult", "File select error", e);
                     }
+                    imageAdapter.notifyDataSetChanged();
                 }
             }
         }
