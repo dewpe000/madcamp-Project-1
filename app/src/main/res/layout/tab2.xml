@@ -27,7 +27,7 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/bigImagePager"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"/>
+                android:layout_height="410dp"/>
         </com.example.project1.Tab2.BigImage.NestedScrollableHost>
 
         <androidx.recyclerview.widget.RecyclerView
