@@ -26,6 +26,9 @@
         <activity android:name=".Tab3.Roulette.RouletteActivity"/>
         <activity android:name=".Tab3.Lottery.LotteryActivity"/>
         <activity android:name=".Tab3.Draw.DrawActivity"/>
+        <activity
+            android:name=".Tab3.RSP.RSPActivity"
+            android:screenOrientation="landscape"/>
     </application>
 
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
