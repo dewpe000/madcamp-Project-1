@@ -20,14 +20,15 @@
             android:textSize="30dp"
             android:textStyle="bold"></TextView>
 
-        <com.github.chrisbanes.photoview.PhotoView
-            android:id="@+id/bigImage"
+        <com.example.project1.Tab2.BigImage.NestedScrollableHost
+            android:id="@+id/bigImageFrame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:background="#000000"/>
-
+            android:layout_height="wrap_content">
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/bigImagePager"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"/>
+        </com.example.project1.Tab2.BigImage.NestedScrollableHost>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv2"
@@ -35,7 +36,6 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
-            android:layout_weight="2"
             android:scrollbarFadeDuration="0"
             android:scrollbarSize="5dp"
             android:scrollbarThumbVertical="@android:color/darker_gray"

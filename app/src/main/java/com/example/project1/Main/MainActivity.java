@@ -29,11 +29,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavi;
-    FragmentManager fragManager;
-    FragmentTransaction fragTransaction;
-    Tab1 tab1;
-    Tab2 tab2;
-    Tab3 tab3;
     ViewPager2 vPager;
     OnBackPressedListener listener;
 

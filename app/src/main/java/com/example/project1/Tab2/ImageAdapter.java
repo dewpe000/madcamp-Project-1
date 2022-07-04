@@ -3,6 +3,7 @@ package com.example.project1.Tab2;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,13 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.project1.Main.MainActivity;
 import com.example.project1.R;
+import com.example.project1.Tab2.BigImage.BigImage;
+import com.example.project1.Tab2.BigImage.BigImageAdapter;
+import com.example.project1.Tab2.BigImage.NestedScrollableHost;
 
 import java.util.ArrayList;
 
@@ -48,10 +53,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             @Override
             public void onClick(View view) {
                 Tab2 frag = ((Tab2) Tab2.fragment);
-                ImageView imageView = frag.getPhotoView();
+                NestedScrollableHost bigImageFrame = (NestedScrollableHost) frag.getBigImageFrame();
+                frag.getBigPager().setCurrentItem(position);
+
+                Log.d("AAAAAAAAAAAAAAAAAA", Integer.toString(position));
                 currPos = position;
-                imageView.setImageURI(iData.getImageResource());
-                imageView.setVisibility(View.VISIBLE);
+//                imageView.setImageURI(iData.getImageResource());
+                bigImageFrame.setVisibility(View.VISIBLE);
                 ((MainActivity)frag.getActivity()).setOnBackPressedListener(frag);
             }
         });
@@ -72,13 +80,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 ab.setNegativeButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
+//                        if(position == currPos) {
+//                            NestedScrollableHost bigImageFrame = ((Tab2) Tab2.fragment).getBigImageFrame();
+//                            bigImageFrame.setVisibility(View.GONE);
+//                        }
+
+
                         remove(holder.getBindingAdapterPosition());
 
-                        if(position == currPos) {
-                            Tab2 frag = ((Tab2) Tab2.fragment);
-                            ImageView imageView = frag.getPhotoView();
-                            imageView.setVisibility(View.GONE);
-                        }
                         dialogInterface.dismiss();
                     }
                 });
@@ -100,8 +110,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void remove(int position) {
         try {
             imageList.remove(position);
-            notifyItemRemoved(position); // 새로고침
-        } catch (IndexOutOfBoundsException ex) {
+//            ((Tab2) Tab2.fragment).getBigAdapter().notifyItemRemoved(position);
+            notifyItemRemoved(position);
+
+            BigImageAdapter bigAdapter = ((Tab2) Tab2.fragment).getBigAdapter();
+            bigAdapter.notifyItemRangeChanged(position, bigAdapter.getItemCount());
+            notifyDataSetChanged();
+        }
+        catch (IndexOutOfBoundsException ex) {
             ex.printStackTrace();
         }
     }

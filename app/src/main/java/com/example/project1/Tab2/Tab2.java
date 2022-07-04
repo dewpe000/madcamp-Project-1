@@ -17,8 +17,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.project1.R;
+import com.example.project1.Tab2.BigImage.BigImage;
+import com.example.project1.Tab2.BigImage.BigImageAdapter;
+import com.example.project1.Tab2.BigImage.NestedScrollableHost;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -28,16 +32,19 @@ import java.util.ArrayList;
 public class Tab2 extends Fragment implements OnBackPressedListener {
 
     View view;
-    private ArrayList<ImageData> imageList;
+    private ArrayList<ImageData> imageList = new ArrayList<>();
     private ImageAdapter imageAdapter;
+    private BigImageAdapter bigAdapter;
+
+    ViewPager2 bigPager;
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
 
-    private PhotoView photoView;
-
+    private NestedScrollableHost bigImageFrame;
     private FloatingActionButton loadBtn;
 
     public static Fragment fragment;
+
 
 
     public Tab2() { }
@@ -46,27 +53,29 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.tab2, container, false);
         fragment = this;
+
+
         recyclerView = (RecyclerView) view.findViewById(R.id.rv2);
-
-        imageList = new ArrayList<>();
-
         imageAdapter = new ImageAdapter(getActivity(), imageList);
         recyclerView.setAdapter(imageAdapter);
         gridLayoutManager = new GridLayoutManager(getActivity(),3 );
         recyclerView.setLayoutManager(gridLayoutManager);
 
+        bigPager = view.findViewById(R.id.bigImagePager);
+        bigAdapter = (new BigImageAdapter(getActivity(), imageList));
+        bigPager.setAdapter(bigAdapter);
 
-        photoView = view.findViewById(R.id.bigImage);
-        photoView.setVisibility(View.GONE);
+        bigImageFrame = view.findViewById(R.id.bigImageFrame);
+        bigImageFrame.setVisibility(View.GONE);
 
+        bigPager.setOffscreenPageLimit(100);
 
         loadBtn = (FloatingActionButton) view.findViewById(R.id.loadBtn);
-
         loadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //imageList.clear();
-                photoView.setVisibility(View.GONE);
+                //photoView.setVisibility(View.GONE);
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 intent.setType("image/*");
@@ -75,19 +84,25 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
             }
         });
 
-
-
         return view;
     }
 
-    public PhotoView getPhotoView() {
-        return photoView;
+    public NestedScrollableHost getBigImageFrame() {
+        return bigImageFrame;
+    }
+
+    public ViewPager2 getBigPager() {
+        return bigPager;
+    }
+
+    public BigImageAdapter getBigAdapter() {
+        return bigAdapter;
     }
 
     @Override
     public void onBackPressed() {
-        if (photoView.getVisibility() == View.VISIBLE) {
-            photoView.setVisibility(View.GONE);
+        if (bigImageFrame.getVisibility() == View.VISIBLE) {
+            bigImageFrame.setVisibility(View.GONE);
         }
     }
 
@@ -110,7 +125,6 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
                 Uri imageUri = data.getData();
                 ImageData imageData = new ImageData("name", imageUri);
                 imageList.add(imageData);
-                imageAdapter.notifyDataSetChanged();
             }
             else{
                 ClipData clipData = data.getClipData();
@@ -125,10 +139,17 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
                     catch (Exception e) {
                         Log.e("OnActivityResult", "File select error", e);
                     }
-                    imageAdapter.notifyDataSetChanged();
                 }
             }
+            bigAdapter.notifyDataSetChanged();
+            imageAdapter.notifyDataSetChanged();
         }
     }
 
+    public void loopFragment() {
+        for(int i = 0; i < imageList.size(); i++) {
+            Log.d("in Loop", Integer.toString(i));
+            bigPager.setCurrentItem(i);
+        }
+    }
 }
