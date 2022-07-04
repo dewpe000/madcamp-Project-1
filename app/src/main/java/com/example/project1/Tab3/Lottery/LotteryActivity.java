@@ -3,8 +3,10 @@ package com.example.project1.Tab3.Lottery;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +14,7 @@ import android.widget.GridLayout;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +29,6 @@ public class LotteryActivity extends AppCompatActivity {
     private Button lotteryAdd;
     private Button lotteryFinish;
     private Button lotteryClear;
-    private EditText numWinner;
 
     private ArrayList<String> lotteryList;
     private LotteryAdapter lotteryAdapter;
@@ -41,10 +43,12 @@ public class LotteryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lottery);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         lotteryAdd = (Button) findViewById(R.id.lotteryAdd);
         lotteryFinish = (Button) findViewById(R.id.lotteryFinish);
         lotteryClear = (Button) findViewById(R.id.lotteryClear);
-        numWinner = (EditText) findViewById(R.id.numWinner);
 
         recyclerView = (RecyclerView) findViewById(R.id.rvLottery);
 
@@ -63,7 +67,6 @@ public class LotteryActivity extends AppCompatActivity {
                 String newItem = new String("통과");
                 lotteryList.add(newItem);
                 lotteryAdapter.notifyDataSetChanged();
-                //lotteryAdapter.setAllInvisible();
             }
         });
 
@@ -71,31 +74,30 @@ public class LotteryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                LinearLayout dialogView = (LinearLayout) View.inflate(LotteryActivity.this, R.layout.dialog_input, null);
+                final EditText editText = new EditText(LotteryActivity.this);
                 AlertDialog.Builder dlg = new AlertDialog.Builder(LotteryActivity.this);
 
                 dlg.setTitle("당첨자를 입력해주세요");
-                dlg.setView(dialogView);
+                dlg.setView(editText);
 
-                int num = 1;
-
-                dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                dlg.setPositiveButton("취소", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        EditText etDI = dialogView.findViewById(R.id.etDI);
-                        num = Integer.parseInt(etDI.getText().toString());
-                    }
-                });
-                dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
+                        lotteryAdapter.notifyDataSetChanged();
                     }
                 });
 
-                resetWinner();
-                numWinner.setText("");
-                lotteryAdapter.notifyDataSetChanged();
+                dlg.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int num = Integer.parseInt(editText.getText().toString());
+                        resetWinner(num);
+                        lotteryAdapter.notifyDataSetChanged();
+                    }
+                });
+
+
+                dlg.show();
             }
         });
 
@@ -103,7 +105,6 @@ public class LotteryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 lotteryList.clear();
-                numWinner.setText("");
                 lotteryAdapter.notifyDataSetChanged();
             }
         });
@@ -113,15 +114,9 @@ public class LotteryActivity extends AppCompatActivity {
 
     public void resetWinner(Integer num) {
 
-        int numOfWinner = 1;
 
         for(int i = 0; i< lotteryList.size(); i++) {
             lotteryList.set(i, "통과");
-        }
-
-
-        if(!(numWinner.getText().toString().equals(""))) {
-            numOfWinner = Integer.parseInt(numWinner.getText().toString());
         }
 
         int winner = 0;
@@ -138,7 +133,7 @@ public class LotteryActivity extends AppCompatActivity {
             winnerList.add(winner);
             count ++;
 
-            if(count == numOfWinner)
+            if(count == num)
                 break;
         }
 
