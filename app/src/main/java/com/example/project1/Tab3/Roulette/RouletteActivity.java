@@ -109,7 +109,9 @@ public class RouletteActivity extends AppCompatActivity {
         int blue = (int)(Math.random() * 100+155);
         int green = (int)(Math.random() * 100+155);
 
-        wheelItems.add(new WheelItem(Color.rgb(red, blue, green), bitmap, newitem));
+        int color = (int)(Math.random() * 100 + 80);
+
+        wheelItems.add(new WheelItem(Color.rgb(color, color, 255), bitmap, newitem));
 
         luckyWheel.addWheelItems(wheelItems);
     }

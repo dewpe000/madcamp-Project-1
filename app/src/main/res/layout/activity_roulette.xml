@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Tab3.Roulette.RouletteActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -20,16 +22,16 @@
                 android:paddingBottom="15dp"
                 android:text="Roulette"
                 android:textSize="30dp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/clear_btn"
-                android:background="@drawable/ic_baseline_refresh_24"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
+                android:background="@drawable/ic_baseline_refresh_24"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -52,7 +54,6 @@
         android:layout_below="@+id/luck_wheel"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:background="#FF9C27B0"
         android:text="start"
         android:textColor="@color/white"
         android:textSize="25sp" />
@@ -75,7 +76,7 @@
                 android:layout_height="40dp"
                 android:layout_below="@id/spin_btn"
                 android:layout_gravity="center"
-                android:background="@android:color/darker_gray"
+                android:background="#FFEEEEEE"
                 android:hint="  new items?"
                 android:textSize="20dp" />
 
