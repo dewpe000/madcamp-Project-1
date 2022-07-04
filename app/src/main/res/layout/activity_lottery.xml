@@ -60,14 +60,14 @@
                     android:id="@+id/lotteryAdd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/teal_200"
+                    android:backgroundTint="@color/title"
                     android:text="add" />
 
                 <Button
                     android:id="@+id/lotteryFinish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/teal_200"
+                    android:backgroundTint="@color/title"
                     android:layout_marginLeft="20dp"
                     android:text="Finish"
                     />
