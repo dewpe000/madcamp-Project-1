@@ -84,8 +84,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         holder.messageImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(Intent.ACTION_SEND, Uri.parse(phoneNumber));
-                //context.startActivity(intent);
+                String phoneNumber = holder.phoneNumber.getText().toString();
+                phoneNumber = "sms:" + phoneNumber;
+                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(phoneNumber));
+                context.startActivity(intent);
             }
         });
 
