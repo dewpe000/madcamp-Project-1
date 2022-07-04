@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,9 +20,9 @@ public class Tab3 extends Fragment {
 
     View view;
 
-    Button tab3Btn1;
-    Button tab3Btn2;
-    Button tab3Btn3;
+    RelativeLayout tab3RL1;
+    RelativeLayout tab3RL2;
+    RelativeLayout tab3RL3;
 
     public Tab3() { }
 
@@ -31,11 +31,11 @@ public class Tab3 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.tab3, container, false);
 
-        tab3Btn1 = view.findViewById(R.id.tab3Btn1);
-        tab3Btn2 = view.findViewById(R.id.tab3Btn2);
-        tab3Btn3 = view.findViewById(R.id.tab3Btn3);
+        tab3RL1 = view.findViewById(R.id.tab3RL1);
+        tab3RL2 = view.findViewById(R.id.tab3RL2);
+        tab3RL3 = view.findViewById(R.id.tab3RL3);
 
-        tab3Btn1.setOnClickListener(new View.OnClickListener() {
+        tab3RL1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), RouletteActivity.class);
@@ -43,7 +43,7 @@ public class Tab3 extends Fragment {
             }
         });
 
-        tab3Btn2.setOnClickListener(new View.OnClickListener() {
+        tab3RL2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), LotteryActivity.class);
@@ -51,7 +51,7 @@ public class Tab3 extends Fragment {
             }
         });
 
-        tab3Btn3.setOnClickListener(new View.OnClickListener() {
+        tab3RL3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), DrawActivity.class);

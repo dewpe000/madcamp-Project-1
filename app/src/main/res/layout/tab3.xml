@@ -1,78 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="Random"
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Random"
-            android:textStyle="bold"
-            android:textSize="30dp"
-            android:paddingLeft="15dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp" />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center">
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:gravity="top"
+            android:orientation="vertical">
 
-            <LinearLayout
+
+            <RelativeLayout
+                android:id="@+id/tab3RL1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_margin="30dp">
+                android:layout_marginTop="50dp"
+                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/tab3Btn1"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@android:color/darker_gray"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:text="Roulette"
-                    android:textStyle="bold"
-                    android:textSize="30dp" />
+                    android:textSize="50sp" />
 
-                <Button
-                    android:id="@+id/tab3Btn2"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@android:color/darker_gray"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/icon_roulette" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5px"
+                android:background="#808080">
+
+            </View>
+
+
+            <RelativeLayout
+                android:id="@+id/tab3RL2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:text="Lottery"
-                    android:textStyle="bold"
-                    android:textSize="30dp"
-                    />
+                    android:textSize="50sp" />
 
-                <Button
-                    android:id="@+id/tab3Btn3"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@android:color/darker_gray"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/icon_lottery" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5px"
+                android:background="#808080">
+
+            </View>
+
+
+            <RelativeLayout
+                android:id="@+id/tab3RL3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:text="Draw"
-                    android:textStyle="bold"
-                    android:textSize="30dp"/>
+                    android:textSize="50sp" />
 
-            </LinearLayout>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/icon_draw" />
+            </RelativeLayout>
 
-        </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5px"
+                android:background="#808080">
 
+            </View>
 
+        </LinearLayout>
 
     </LinearLayout>
+
 
 </LinearLayout>
