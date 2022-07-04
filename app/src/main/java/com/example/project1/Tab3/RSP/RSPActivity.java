@@ -30,7 +30,7 @@ public class RSPActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_rsp);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -96,21 +96,40 @@ public class RSPActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ply1 == 0) {
-                    imageView1.setImageResource(R.drawable.rock);
-                } else if (ply1 == 1) {
-                    imageView1.setImageResource(R.drawable.scissors);
-                } else if (ply1 == 2) {
-                    imageView1.setImageResource(R.drawable.paper);
-                }
+                if (play.getText() == "play") {
+                    if (ply1 == 0) {
+                        imageView1.setImageResource(R.drawable.rock);
+                    } else if (ply1 == 1) {
+                        imageView1.setImageResource(R.drawable.scissors);
+                    } else if (ply1 == 2) {
+                        imageView1.setImageResource(R.drawable.paper);
+                    }
 
-                if (ply2 == 0) {
-                    imageView2.setImageResource(R.drawable.rock);
-                } else if (ply2 == 1) {
-                    imageView2.setImageResource(R.drawable.scissors);
-                } else if (ply2 == 2) {
-                    imageView2.setImageResource(R.drawable.paper);
+                    if (ply2 == 0) {
+                        imageView2.setImageResource(R.drawable.rock);
+                    } else if (ply2 == 1) {
+                        imageView2.setImageResource(R.drawable.scissors);
+                    } else if (ply2 == 2) {
+                        imageView2.setImageResource(R.drawable.paper);
+                    }
+
+                    play.setText("again");
+                } else {
+                    imageView1.setImageResource(R.drawable.init_rsp);
+                    imageView2.setImageResource(R.drawable.init_rsp);
+                    play.setText("play");
                 }
+//                play.setVisibility(View.GONE);
+            }
+        });
+
+        Button rspClear = findViewById(R.id.rspClear);
+        rspClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageView1.setImageResource(R.drawable.init_rsp);
+                imageView2.setImageResource(R.drawable.init_rsp);
+//                play.setVisibility(View.VISIBLE);
             }
         });
 
