@@ -1,12 +1,15 @@
 package com.example.project1.Tab3.Lottery;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,7 +24,7 @@ import java.util.ArrayList;
 public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryViewHolder> {
 
     private ArrayList<String> lotteryDataList;
-    private ArrayList<LinearLayout> lotteryList = new ArrayList<>();
+    private ArrayList<TextView> lotteryList = new ArrayList<>();
     private final Context context;
 
 
@@ -41,20 +44,22 @@ public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryV
 
     @Override
     public void onBindViewHolder(@NonNull LotteryAdapter.LotteryViewHolder holder, int position) {
-        String lottertVal = lotteryDataList.get(position);
+        String lotteryVal = lotteryDataList.get(position);
 
-        holder.lotteryValue.setText(lottertVal);
+        holder.lotteryValue.setText(lotteryVal);
 
-        holder.lottery.setVisibility(View.INVISIBLE);
-        lotteryList.add(holder.lottery);
+        holder.lotteryValue.setVisibility(View.INVISIBLE);
+        lotteryList.add(holder.lotteryValue);
+
+        holder.lotteryImage.setColorFilter(Color.parseColor("#55ff0000"));
 
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LotteryDialog dlg = new LotteryDialog(view.getContext(), (lottertVal + "!!!!!"));
+                LotteryDialog dlg = new LotteryDialog(view.getContext(), (lotteryVal + "!!!!!"));
                 dlg.show();
-                holder.lottery.setVisibility(View.VISIBLE);
+                holder.lotteryValue.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -67,12 +72,14 @@ public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryV
 
     public class LotteryViewHolder extends RecyclerView.ViewHolder {
 
-        protected LinearLayout lottery;
+        protected RelativeLayout lottery;
+        protected ImageView lotteryImage;
         protected TextView lotteryValue;
 
         public LotteryViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.lottery = (LinearLayout) itemView.findViewById(R.id.lottery);
+            this.lottery = (RelativeLayout) itemView.findViewById(R.id.lottery);
+            this.lotteryImage = (ImageView) itemView.findViewById(R.id.lotteryImage);
             this.lotteryValue = (TextView) itemView.findViewById(R.id.lotteryValue);
         }
     }

@@ -54,7 +54,6 @@ public class RouletteActivity extends AppCompatActivity {
             public void onReachTarget() {
                 WheelItem wheelItem = wheelItems.get(val);
                 String money = wheelItem.text;
-                Toast.makeText(RouletteActivity.this, money, Toast.LENGTH_SHORT).show();
             }
         });
 

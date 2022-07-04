@@ -73,8 +73,6 @@ public class DrawActivity extends AppCompatActivity {
 
                             editText.setText("");
 
-                            Toast.makeText(DrawActivity.this, newitem, Toast.LENGTH_SHORT).show();
-
                             adapter.notifyDataSetChanged();
                         }
 
