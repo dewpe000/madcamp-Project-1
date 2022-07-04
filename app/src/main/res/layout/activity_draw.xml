@@ -11,8 +11,8 @@
         android:orientation="vertical">
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
@@ -28,14 +28,16 @@
                 android:textStyle="bold" />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="R"
-                android:layout_marginStart="15dp"
                 android:id="@+id/restart_btn"
-                />
+                android:background="@drawable/ic_baseline_refresh_24"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/teal_200"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/bigText"

@@ -8,28 +8,35 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:text="Roulette"
-            android:textSize="30dp"
-            android:textStyle="bold"></TextView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:text="Roulette"
+                android:textSize="30dp"
+                android:textStyle="bold"></TextView>
+
+            <Button
+                android:id="@+id/clear_btn"
+                android:background="@drawable/ic_baseline_refresh_24"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
 
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/clear_btn"
-        android:background="@drawable/ic_baseline_refresh_24"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:textStyle="bold" />
 
     <com.bluehomestudio.luckywheel.LuckyWheel
         android:id="@+id/luck_wheel"
