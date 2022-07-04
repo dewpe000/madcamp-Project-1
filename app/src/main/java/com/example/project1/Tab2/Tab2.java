@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -20,6 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project1.R;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
 
-    private ImageView imageView;
+    private PhotoView photoView;
 
     private FloatingActionButton loadBtn;
 
@@ -56,8 +56,8 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
         recyclerView.setLayoutManager(gridLayoutManager);
 
 
-        imageView = view.findViewById(R.id.bigImage);
-        imageView.setVisibility(View.GONE);
+        photoView = view.findViewById(R.id.bigImage);
+        photoView.setVisibility(View.GONE);
 
 
         loadBtn = (FloatingActionButton) view.findViewById(R.id.loadBtn);
@@ -66,7 +66,7 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
             @Override
             public void onClick(View view) {
                 //imageList.clear();
-                imageView.setVisibility(View.GONE);
+                photoView.setVisibility(View.GONE);
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 intent.setType("image/*");
@@ -80,14 +80,14 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
         return view;
     }
 
-    public ImageView getImageView() {
-        return imageView;
+    public ImageView getPhotoView() {
+        return photoView;
     }
 
     @Override
     public void onBackPressed() {
-        if (imageView.getVisibility() == View.VISIBLE) {
-            imageView.setVisibility(View.GONE);
+        if (photoView.getVisibility() == View.VISIBLE) {
+            photoView.setVisibility(View.GONE);
         }
     }
 

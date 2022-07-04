@@ -1,76 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="8dp"
+    android:layout_margin="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
-        android:orientation="horizontal"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        >
-        <ImageView
-            android:id="@+id/profile"
-            android:layout_width="75sp"
-            android:layout_height="75sp"
-            android:scaleType="centerCrop"
-            android:layout_marginRight="20dp" />
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/userName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:text="name"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                />
-            <TextView
-                android:id="@+id/phoneNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:text="recycler view"
-                android:textSize="18dp"
-                />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/callMessage"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#f6f6f6"
-        android:gravity="center">
+        android:orientation="vertical">
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
-
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_marginBottom="0dp"
+            android:orientation="horizontal"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center">
             <ImageView
-                android:id="@+id/callImage"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_baseline_call_24"
-                android:scaleType="centerCrop"/>
+                android:id="@+id/profile"
+                android:layout_width="75sp"
+                android:layout_height="75sp"
+                android:scaleType="centerCrop"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp" />
 
-            <ImageView
-                android:id="@+id/messageImage"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="120dp"
-                android:src="@drawable/ic_baseline_message_24"
-                android:scaleType="centerCrop"/>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:text="name"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:text="recycler view"
+                    android:textSize="18dp"
+                    />
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/callMessage"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ffffff"
+            android:gravity="center">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <ImageView
+                    android:id="@+id/callImage"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_call_24"
+                    android:scaleType="centerCrop"/>
+
+                <ImageView
+                    android:id="@+id/messageImage"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="120dp"
+                    android:src="@drawable/ic_baseline_message_24"
+                    android:scaleType="centerCrop"/>
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

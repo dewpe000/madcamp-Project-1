@@ -48,7 +48,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             @Override
             public void onClick(View view) {
                 Tab2 frag = ((Tab2) Tab2.fragment);
-                ImageView imageView = frag.getImageView();
+                ImageView imageView = frag.getPhotoView();
                 currPos = position;
                 imageView.setImageURI(iData.getImageResource());
                 imageView.setVisibility(View.VISIBLE);
@@ -76,7 +76,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
                         if(position == currPos) {
                             Tab2 frag = ((Tab2) Tab2.fragment);
-                            ImageView imageView = frag.getImageView();
+                            ImageView imageView = frag.getPhotoView();
                             imageView.setVisibility(View.GONE);
                         }
                         dialogInterface.dismiss();
