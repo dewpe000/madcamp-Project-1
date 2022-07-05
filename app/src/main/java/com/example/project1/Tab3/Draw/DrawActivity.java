@@ -1,7 +1,10 @@
 package com.example.project1.Tab3.Draw;
 
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project1.Main.MainActivity;
 import com.example.project1.R;
+import com.example.project1.Tab1.ContactData;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -213,6 +217,43 @@ public class DrawActivity extends AppCompatActivity {
 
                 textView.setText(result);
                 textView.setVisibility(View.VISIBLE);
+            }
+        });
+
+        Button contact = findViewById(R.id.contact_btn);
+        contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                items.clear();
+
+                Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+
+                String[] projection = new String[] {
+                        ContactsContract.CommonDataKinds.Phone.NUMBER,
+                        ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+                        ContactsContract.Contacts.PHOTO_ID,
+                        ContactsContract.Contacts._ID };
+
+                String[] selectionArgs = null;
+                String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
+
+                Cursor cursor =  DrawActivity.this.getContentResolver().query(uri, projection, null, selectionArgs, sortOrder);
+
+                if (cursor.moveToFirst()) {
+                    do {
+                        String userName = cursor.getString(1);
+
+                        items.add(userName);
+
+                    } while (cursor.moveToNext());
+                }
+
+                if (cursor != null) {
+                    cursor.close();
+                }
+
+                adapter.notifyDataSetChanged();
+
             }
         });
 
