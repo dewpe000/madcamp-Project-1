@@ -41,7 +41,7 @@ public class RSPActivity extends AppCompatActivity {
         imageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String[] l = new String[]{"Rock", "Paper", "Scissors", "Random"};
+                final String[] l = new String[]{"Rock", "Scissors", "Paper", "Random"};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(RSPActivity.this);
                 builder.setTitle("choose?").setSingleChoiceItems(l, 0, new DialogInterface.OnClickListener() {
@@ -68,7 +68,7 @@ public class RSPActivity extends AppCompatActivity {
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String[] l = new String[]{"Rock", "Paper", "Scissors", "Random"};
+                final String[] l = new String[]{"Rock", "Scissors", "Paper", "Random"};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(RSPActivity.this);
                 builder.setTitle("choose?").setSingleChoiceItems(l, 0, new DialogInterface.OnClickListener() {
