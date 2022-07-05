@@ -24,6 +24,9 @@ public class RSPActivity extends AppCompatActivity {
     private ImageView imageView1;
     private ImageView imageView2;
 
+    private ImageView ply1_img;
+    private ImageView ply2_img;
+
     int ply1 = 0;
     int ply2 = 0;
 
@@ -37,6 +40,8 @@ public class RSPActivity extends AppCompatActivity {
 
         imageView1 = findViewById(R.id.player1);
         imageView2 = findViewById(R.id.player2);
+        ply1_img = findViewById(R.id.ply1_img);
+        ply2_img = findViewById(R.id.ply2_img);
 
         imageView1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,29 +104,46 @@ public class RSPActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (play.getText() == "play") {
                     if (ply1 == 0) {
-                        imageView1.setImageResource(R.drawable.rock);
+                        imageView1.setImageResource(R.drawable.rock_ply1);
                     } else if (ply1 == 1) {
-                        imageView1.setImageResource(R.drawable.scissors);
+                        imageView1.setImageResource(R.drawable.scissors_ply1);
                     } else if (ply1 == 2) {
-                        imageView1.setImageResource(R.drawable.paper);
+                        imageView1.setImageResource(R.drawable.paper_ply1);
                     }
 
                     if (ply2 == 0) {
-                        imageView2.setImageResource(R.drawable.rock);
+                        imageView2.setImageResource(R.drawable.rock_ply2);
                     } else if (ply2 == 1) {
-                        imageView2.setImageResource(R.drawable.scissors);
+                        imageView2.setImageResource(R.drawable.scissors_ply2);
                     } else if (ply2 == 2) {
-                        imageView2.setImageResource(R.drawable.paper);
+                        imageView2.setImageResource(R.drawable.paper_ply2);
+                    }
+
+                    if ((ply1 == 0 && ply2 == 1) || (ply1 == 1 && ply2 == 2) || (ply1 == 2 && ply2 == 0)) {
+                        ply1_img.setImageResource(R.drawable.ply1_win);
+                        ply2_img.setImageResource(R.drawable.ply2_lose);
+                    } else if ((ply1 == 2 && ply2 == 1) || (ply1 == 1 && ply2 == 0) || (ply1 == 0 && ply2 == 2)) {
+                        ply1_img.setImageResource(R.drawable.ply1_lose);
+                        ply2_img.setImageResource(R.drawable.ply2_win);
+                    } else {
+                        ply1_img.setImageResource(R.drawable.rsp_draw);
+                        ply2_img.setImageResource(R.drawable.rsp_draw);
                     }
 
                     play.setText("again");
                 } else {
                     imageView1.setImageResource(R.drawable.init_rsp);
                     imageView2.setImageResource(R.drawable.init_rsp);
+                    ply1_img.setImageResource(R.drawable.ply1);
+                    ply2_img.setImageResource(R.drawable.ply2);
                     play.setText("play");
                 }
 //                play.setVisibility(View.GONE);
+
+
             }
+
+
         });
 
         Button rspClear = findViewById(R.id.rspClear);
