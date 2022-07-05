@@ -1,5 +1,6 @@
 package com.example.project1.Tab3.Lottery;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -73,9 +74,9 @@ public class LotteryActivity extends AppCompatActivity {
                     String newItem = new String("pass");
                     lotteryList.add(newItem);
 
-                    int red = random.nextInt(255);
-                    int blue = random.nextInt(100);
-                    int green = random.nextInt(255);
+                    int red = (int) (Math.random() * 255 );
+                    int blue = (int) (Math.random() * 220 + 25);
+                    int green = (int) (Math.random() * 255);
 
                     int color = Color.rgb(red, green, blue);
 
@@ -87,7 +88,6 @@ public class LotteryActivity extends AppCompatActivity {
                 else {
                     lotteryAdapter.setAllVisible();
                     lotteryAdd.setText("ADD");
-
                 }
             }
         });

@@ -41,14 +41,12 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     Animation translateUp;
     Animation translateDown;
-    Animation anim = new AlphaAnimation(0, 1);
 
     public ContactAdapter(Context context, ArrayList<ContactData> contactList) {
         this.context = context;
         this.contactList = contactList;
         translateDown = AnimationUtils.loadAnimation(context, R.anim.translate_down);
         translateUp = AnimationUtils.loadAnimation(context, R.anim.translate_up);
-        anim.setDuration(1000);
     }
 
     @NonNull
@@ -124,7 +122,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                         }
                     }
                     holder.linearLayout.setVisibility(View.VISIBLE);
-                    holder.linearLayout.setAnimation(anim);
                    // holder.linearLayout.startAnimation(translateUp);
                 }
 

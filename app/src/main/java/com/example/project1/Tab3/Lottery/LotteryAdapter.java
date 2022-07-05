@@ -63,13 +63,7 @@ public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.lotteryValue.setVisibility(View.VISIBLE);
-                holder.lotteryImage.setImageResource(R.drawable.icon_fold_paper);
-
-                if(holder.lotteryValue.getText().equals("fail")){
-                    holder.lotteryValue.setBackground(context.getResources().getDrawable(R.drawable.lottery_fail));
-                }
-
+                setVisible(holder);
             }
         });
     }
@@ -94,10 +88,17 @@ public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryV
         }
     }
 
+    public void setVisible(LotteryViewHolder holder) {
+        holder.lotteryValue.setVisibility(View.VISIBLE);
+        if(holder.lotteryValue.getText().equals("fail")) {
+            holder.lotteryValue.setBackground((context.getResources().getDrawable(R.drawable.lottery_fail)));
+        }
+        holder.lotteryImage.setImageResource(R.drawable.icon_fold_paper);
+    }
+
     public void setAllVisible() {
         for(int i = 0; i < lotteryList.size(); i++) {
-            lotteryList.get(i).lotteryValue.setVisibility(View.VISIBLE);
-            lotteryList.get(i).lotteryImage.setImageResource(R.drawable.icon_fold_paper);
+            setVisible(lotteryList.get(i));
         }
     }
 
