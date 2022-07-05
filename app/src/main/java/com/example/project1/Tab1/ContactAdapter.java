@@ -145,7 +145,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                 ab.setNegativeButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        remove(position);
+                        remove(holder.getBindingAdapterPosition());
                         dialogInterface.dismiss();
                     }
                 });

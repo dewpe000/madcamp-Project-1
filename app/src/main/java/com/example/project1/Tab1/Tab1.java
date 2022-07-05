@@ -4,11 +4,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +19,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.project1.R;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class Tab1 extends Fragment {
 
@@ -31,12 +28,16 @@ public class Tab1 extends Fragment {
     private LinearLayoutManager linearLayoutManager;
     private SwipeRefreshLayout swipeRefreshLayout;
 
+    public static Fragment fragment;
+
     public Tab1() { }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab1, container, false);
+
+        fragment = this;
 
         swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv);
@@ -51,7 +52,7 @@ public class Tab1 extends Fragment {
                     @Override
                     public void onRefresh() {
                         contactList.clear();
-                        contactList.addAll(getContactList());
+                        contactList.addAll(makeContactList());
                         contactAdapter.notifyDataSetChanged();
 
                         swipeRefreshLayout.setRefreshing(false);
@@ -63,7 +64,7 @@ public class Tab1 extends Fragment {
     }
 
 
-    public ArrayList<ContactData> getContactList() {
+    public ArrayList<ContactData> makeContactList() {
         Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
 
         String[] projection = new String[] {
@@ -120,5 +121,15 @@ public class Tab1 extends Fragment {
         }
 
         return copy;
+    }
+
+    public ArrayList<ContactData> getContactList() {
+        return contactList;
+    }
+
+    @Override
+    public void onDestroy() {
+        fragment = null;
+        super.onDestroy();
     }
 }

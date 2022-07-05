@@ -15,12 +15,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project1.Main.MainActivity;
 import com.example.project1.R;
 import com.example.project1.Tab1.ContactData;
+import com.example.project1.Tab1.Tab1;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -226,34 +228,49 @@ public class DrawActivity extends AppCompatActivity {
             public void onClick(View view) {
                 items.clear();
 
-                Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+                ArrayList<ContactData> contactList =((Tab1) Tab1.fragment).getContactList();
+                ArrayList<String> userNameArrayList = new ArrayList<>();
+                ArrayList<String> selectedList = new ArrayList<>();
 
-                String[] projection = new String[] {
-                        ContactsContract.CommonDataKinds.Phone.NUMBER,
-                        ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-                        ContactsContract.Contacts.PHOTO_ID,
-                        ContactsContract.Contacts._ID };
-
-                String[] selectionArgs = null;
-                String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
-
-                Cursor cursor =  DrawActivity.this.getContentResolver().query(uri, projection, null, selectionArgs, sortOrder);
-
-                if (cursor.moveToFirst()) {
-                    do {
-                        String userName = cursor.getString(1);
-
-                        items.add(userName);
-
-                    } while (cursor.moveToNext());
+                for(int i = 0; i < contactList.size(); i++) {
+                    userNameArrayList.add( contactList.get(i).getUserName());
                 }
 
-                if (cursor != null) {
-                    cursor.close();
-                }
 
-                adapter.notifyDataSetChanged();
+                String[] userNameList = userNameArrayList.toArray(new String[0]);
 
+                AlertDialog.Builder contactDlg = new AlertDialog.Builder(DrawActivity.this);
+                contactDlg.setTitle("Contacts");
+
+                contactDlg.setMultiChoiceItems(userNameList, null, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+                        if(isChecked) {
+                            selectedList.add( userNameList[position]);
+                        }
+
+                    }
+                });
+
+                contactDlg.setNegativeButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        for(int idx = 0 ; idx < selectedList.size(); idx++) {
+                            items.add(selectedList.get(idx));
+                            adapter.notifyDataSetChanged();
+                        }
+
+                    }
+                });
+
+                contactDlg.setPositiveButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //
+                    }
+                });
+
+                contactDlg.show();
             }
         });
 
