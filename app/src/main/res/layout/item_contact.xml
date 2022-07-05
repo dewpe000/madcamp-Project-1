@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/custom_ripple_effect">
+        android:background="@drawable/custom_ripple_effect"
+        android:animateLayoutChanges="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="85dp"
@@ -82,7 +83,6 @@
                     android:scaleType="centerCrop"/>
             </LinearLayout>
         </LinearLayout>
-
 
 
     </LinearLayout>

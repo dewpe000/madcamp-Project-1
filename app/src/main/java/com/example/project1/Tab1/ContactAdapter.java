@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,14 +41,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     private ArrayList<LinearLayout> linList = new ArrayList<>();
 
-    Animation translateUp;
-    Animation translateDown;
 
     public ContactAdapter(Context context, ArrayList<ContactData> contactList) {
         this.context = context;
         this.contactList = contactList;
-        translateDown = AnimationUtils.loadAnimation(context, R.anim.translate_down);
-        translateUp = AnimationUtils.loadAnimation(context, R.anim.translate_up);
     }
 
     @NonNull
@@ -108,7 +106,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             public void onClick(View view) {
                 if(holder.linearLayout.getVisibility() == View.VISIBLE) {
                     holder.linearLayout.setVisibility(View.GONE);
-                    //holder.linearLayout.startAnimation(translateDown);
                 }
                 else {
 
@@ -118,11 +115,9 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                         linearLayout = linList.get(i);
                         if(linearLayout.getVisibility() == View.VISIBLE) {
                             linList.get(i).setVisibility(View.GONE);
-                            //linearLayout.startAnimation(translateUp);
                         }
                     }
                     holder.linearLayout.setVisibility(View.VISIBLE);
-                   // holder.linearLayout.startAnimation(translateUp);
                 }
 
 
