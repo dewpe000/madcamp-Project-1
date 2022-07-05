@@ -54,7 +54,7 @@ public class DrawActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         textView = findViewById(R.id.bigText);
-        textView.setVisibility(View.GONE);
+        //textView.setVisibility(View.GONE);
 
         Button add = findViewById(R.id.add_btn);
         add.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +157,7 @@ public class DrawActivity extends AppCompatActivity {
                                 }
 
                                 textView.setText(result);
-                                textView.setVisibility(View.VISIBLE);
+                                //textView.setVisibility(View.VISIBLE);
                             }
                         } else {
                             Toast.makeText(DrawActivity.this, "not an integer", Toast.LENGTH_SHORT).show();
@@ -228,7 +228,7 @@ public class DrawActivity extends AppCompatActivity {
                 }
 
                 textView.setText(result);
-                textView.setVisibility(View.VISIBLE);
+                //textView.setVisibility(View.VISIBLE);
             }
         });
 
@@ -262,7 +262,7 @@ public class DrawActivity extends AppCompatActivity {
                     }
                 });
 
-                contactDlg.setNegativeButton("YES", new DialogInterface.OnClickListener() {
+                contactDlg.setNegativeButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         for(int idx = 0 ; idx < selectedList.size(); idx++) {
@@ -273,7 +273,7 @@ public class DrawActivity extends AppCompatActivity {
                     }
                 });
 
-                contactDlg.setPositiveButton("NO", new DialogInterface.OnClickListener() {
+                contactDlg.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //
