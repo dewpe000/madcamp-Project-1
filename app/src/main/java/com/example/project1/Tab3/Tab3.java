@@ -74,7 +74,7 @@ public class Tab3 extends Fragment {
         });
 
         ImageView ivRSP = (ImageView) view.findViewById(R.id.ivRSP);
-        ivRSP.setColorFilter(R.color.title, PorterDuff.Mode.SRC_IN);
+        ivRSP.setColorFilter(R.color.black, PorterDuff.Mode.SRC_IN);
 
         return view;
     }

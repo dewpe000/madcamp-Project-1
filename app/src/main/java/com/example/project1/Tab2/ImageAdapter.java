@@ -56,7 +56,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 NestedScrollableHost bigImageFrame = (NestedScrollableHost) frag.getBigImageFrame();
                 frag.getBigPager().setCurrentItem(position);
 
-                Log.d("AAAAAAAAAAAAAAAAAA", Integer.toString(position));
                 currPos = position;
 //                imageView.setImageURI(iData.getImageResource());
                 bigImageFrame.setVisibility(View.VISIBLE);
@@ -112,10 +111,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             imageList.remove(position);
 //            ((Tab2) Tab2.fragment).getBigAdapter().notifyItemRemoved(position);
             notifyItemRemoved(position);
+            notifyItemRangeChanged(position, getItemCount());
 
-            BigImageAdapter bigAdapter = ((Tab2) Tab2.fragment).getBigAdapter();
-            bigAdapter.notifyItemRangeChanged(position, bigAdapter.getItemCount());
-            notifyDataSetChanged();
+            Tab2 frag = ((Tab2) Tab2.fragment);
+            frag.getBigPager().setAdapter(new BigImageAdapter(frag.getActivity(), imageList));
+
         }
         catch (IndexOutOfBoundsException ex) {
             ex.printStackTrace();

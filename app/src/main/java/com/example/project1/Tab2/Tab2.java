@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.AnimatorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -60,6 +61,7 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
         recyclerView.setAdapter(imageAdapter);
         gridLayoutManager = new GridLayoutManager(getActivity(),3 );
         recyclerView.setLayoutManager(gridLayoutManager);
+
 
         bigPager = view.findViewById(R.id.bigImagePager);
         bigAdapter = (new BigImageAdapter(getActivity(), imageList));
@@ -143,13 +145,6 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
             }
             bigAdapter.notifyDataSetChanged();
             imageAdapter.notifyDataSetChanged();
-        }
-    }
-
-    public void loopFragment() {
-        for(int i = 0; i < imageList.size(); i++) {
-            Log.d("in Loop", Integer.toString(i));
-            bigPager.setCurrentItem(i);
         }
     }
 }

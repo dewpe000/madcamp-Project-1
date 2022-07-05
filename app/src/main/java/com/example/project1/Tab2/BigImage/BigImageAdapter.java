@@ -36,18 +36,16 @@ public class BigImageAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Log.d("BBBBBBBBBBBBBB", Integer.toString(position));
         return new BigImage(imageList.get(position));
     }
 
-    public void setImageList(ArrayList<ImageData> imageList) {
-        this.imageList = imageList;
-    }
 
     public void removeItem(int position) {
         try {
             imageList.remove(position);
             notifyItemRemoved(position);
+            notifyItemRangeChanged(position, getItemCount());
+            notifyDataSetChanged();
         } catch (IndexOutOfBoundsException ex) {
             ex.printStackTrace();
         }

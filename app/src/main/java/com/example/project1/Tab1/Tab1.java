@@ -4,9 +4,11 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +21,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.project1.R;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class Tab1 extends Fragment {
 
@@ -81,7 +84,8 @@ public class Tab1 extends Fragment {
                 String userName = cursor.getString(1);
                 long photoId = cursor.getLong(2);
                 long personId = cursor.getLong(3);
-                ContactData currData = new ContactData(photoId, personId, cursor.getString(1), cursor.getString(0));
+                phoneNumber = convertPhoneNum(phoneNumber);
+                ContactData currData = new ContactData(photoId, personId, userName, phoneNumber);
 
                 contactList.add(currData);
 
@@ -95,4 +99,26 @@ public class Tab1 extends Fragment {
         return contactList;
     }
 
+    public static String convertPhoneNum(String phoneNumber) {
+        String copy = phoneNumber.replaceAll("-", "");
+
+        if (copy.length() == 11) {
+            copy = copy.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
+
+        }
+        else if(copy.length()==8){
+            copy = copy.replaceAll("(\\d{4})(\\d{4})", "$1-$2");
+        }
+        else{
+            if(copy.indexOf("02")==0){
+                copy = copy.replaceAll("(\\d{2})(\\d{3,4})(\\d{4})", "$1-$2-$3");
+
+            }
+            else{
+                    copy = copy.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
+            }
+        }
+
+        return copy;
+    }
 }
