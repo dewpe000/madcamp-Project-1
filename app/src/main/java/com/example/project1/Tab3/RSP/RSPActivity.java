@@ -99,7 +99,7 @@ public class RSPActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (play.getText() == "play") {
                     if (ply1 == 0) {
-                        imageView1.setImageResource(R.drawable.rock_ply1);
+                        imageView1.setImageResource(R.drawable.rock);
                     } else if (ply1 == 1) {
                         imageView1.setImageResource(R.drawable.scissors);
                     } else if (ply1 == 2) {
