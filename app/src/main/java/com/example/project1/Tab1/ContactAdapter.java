@@ -74,8 +74,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
         Bitmap profile;
 
-        Log.d("AAAAAAAAAAAAAA", Long.toString(cData.getPersonId()));
-
         if(cData.getPersonId() == -1) {
             profile = cData.getBitmap();
         }
