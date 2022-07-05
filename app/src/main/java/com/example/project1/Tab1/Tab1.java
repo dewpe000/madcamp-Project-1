@@ -1,5 +1,6 @@
 package com.example.project1.Tab1;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.project1.R;
+import com.example.project1.Tab3.RSP.RSPActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -27,6 +30,8 @@ public class Tab1 extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private SwipeRefreshLayout swipeRefreshLayout;
+
+    private FloatingActionButton addContactBtn;
 
     public static Fragment fragment;
 
@@ -59,6 +64,15 @@ public class Tab1 extends Fragment {
                     }
                 }
         );
+
+        addContactBtn = view.findViewById(R.id.addContactBtn);
+        addContactBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ContactAddActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

@@ -29,6 +29,7 @@
         <activity
             android:name=".Tab3.RSP.RSPActivity"
             android:screenOrientation="landscape"/>
+        <activity android:name=".Tab1.ContactAddActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
