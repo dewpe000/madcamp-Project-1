@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,32 @@ public class Tab1 extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
+                        //contactList.clear();
+//                        ArrayList<ContactData> contactDataList = makeContactList();
+//                        ArrayList<ContactData> resultList = new ArrayList<>();
+//
+//                        ContactData cData;
+//                        int isDup = 0;
+//
+//                        for(int i = 0; i < contactDataList.size(); i++) {
+//                            cData = contactDataList.get(i);
+//                            isDup = 0;
+//
+//                            for(int j = 0; j < contactList.size(); j++) {
+//                                if(i == j)
+//                                    continue;
+//
+//                                if(cData.getPhoneNumber().equals(contactList.get(j).getPhoneNumber()) &&
+//                                        cData.getUserName().equals(contactList.get(j).getUserName())) {
+//                                    isDup = 1;
+//                                    break;
+//                                }
+//                            }
+//                            if(isDup == 0)
+//                                resultList.add(cData);
+//                        }
+//
+
                         contactList.clear();
                         contactList.addAll(makeContactList());
                         contactAdapter.notifyDataSetChanged();

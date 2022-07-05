@@ -70,7 +70,7 @@ public class ContactAddActivity extends AppCompatActivity {
         addCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                finish();
             }
         });
 
@@ -132,6 +132,12 @@ public class ContactAddActivity extends AppCompatActivity {
 
         rBitmap = Bitmap.createScaledBitmap(oBitmap, (int)width, (int)height, true);
         return rBitmap;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        //super.onBackPressed();
     }
 }
 

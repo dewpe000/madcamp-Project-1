@@ -107,9 +107,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if (ContactAddActivity.cData == null) {
+            return;
+        }
         ContactData cData = ContactAddActivity.cData;
         ((Tab1) Tab1.fragment).getContactList().add(cData);
         ((Tab1) Tab1.fragment).getContactAdapter().notifyDataSetChanged();
+
+        ContactAddActivity.cData = null;
     }
 
     public void setOnBackPressedListener(OnBackPressedListener listener){

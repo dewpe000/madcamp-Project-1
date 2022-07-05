@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/frame_contact_add"
-            android:drawableStart="@drawable/ic_baseline_call_24"
+            android:drawableStart="@drawable/baseline_person_24"
             android:paddingStart="20dp"
             android:drawablePadding="30dp"
             android:layout_marginBottom="50dp"

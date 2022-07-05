@@ -67,7 +67,7 @@ public class DrawActivity extends AppCompatActivity {
                 final EditText editText = new EditText(DrawActivity.this);
                 ad.setView(editText);
 
-                ad.setPositiveButton("add", new DialogInterface.OnClickListener() {
+                ad.setNegativeButton("add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String newitem = editText.getText().toString();
@@ -86,7 +86,7 @@ public class DrawActivity extends AppCompatActivity {
                     }
                 });
 
-                ad.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                ad.setPositiveButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
@@ -109,7 +109,7 @@ public class DrawActivity extends AppCompatActivity {
                 final EditText editText = new EditText(DrawActivity.this);
                 ad.setView(editText);
 
-                ad.setPositiveButton("roll", new DialogInterface.OnClickListener() {
+                ad.setNegativeButton("roll", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String newitem = editText.getText().toString();
@@ -121,6 +121,11 @@ public class DrawActivity extends AppCompatActivity {
                                 Toast.makeText(DrawActivity.this, "empty input", Toast.LENGTH_SHORT).show();
                             } else {
                                 num = Integer.parseInt(newitem);
+
+                                if(num <= 0) {
+                                    Toast.makeText(DrawActivity.this, "not a positive number", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
 
                                 ArrayList<String> chosen = new ArrayList<>();
 
@@ -156,13 +161,14 @@ public class DrawActivity extends AppCompatActivity {
                             }
                         } else {
                             Toast.makeText(DrawActivity.this, "not an integer", Toast.LENGTH_SHORT).show();
+                            return;
                         }
 
                         dialogInterface.dismiss();
                     }
                 });
 
-                ad.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                ad.setPositiveButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
@@ -196,6 +202,10 @@ public class DrawActivity extends AppCompatActivity {
                 String currItem;
 
                 while(true) {
+
+                    if(items.size() == 0)
+                        return;
+
                     val = random.nextInt(items.size());
 
                     currItem = items.get(val);

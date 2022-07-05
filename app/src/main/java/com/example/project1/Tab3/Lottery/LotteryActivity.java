@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project1.R;
+import com.example.project1.Tab3.Draw.DrawActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -102,17 +104,36 @@ public class LotteryActivity extends AppCompatActivity {
                 dlg.setTitle("How much?");
                 dlg.setView(editText);
 
-                dlg.setPositiveButton("NO", new DialogInterface.OnClickListener() {
+                dlg.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         lotteryAdapter.notifyDataSetChanged();
                     }
                 });
 
-                dlg.setNegativeButton("YES", new DialogInterface.OnClickListener() {
+                dlg.setNegativeButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        int num = Integer.parseInt(editText.getText().toString());
+
+
+                        String str;
+                        int num;
+
+                        if(editText.getText() == null)
+                            num = 1;
+                        else {
+                            str = editText.getText().toString();
+                            if(! str.matches("-?\\d+")){
+                                Toast.makeText(LotteryActivity.this, "not an integer", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            num = Integer.parseInt(str);
+                            if(num <= 0) {
+                                Toast.makeText(LotteryActivity.this, "not a positive number", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
+
                         resetWinner(num);
                         lotteryAdapter.notifyDataSetChanged();
                     }

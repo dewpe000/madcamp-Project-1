@@ -58,8 +58,12 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     @Override
     public void onBindViewHolder(@NonNull ContactAdapter.ContactViewHolder holder, @SuppressLint("RecyclerView") int position) {
         ContactData cData = contactList.get(position);
-        holder.userName.setText(cData.getUserName());
 
+        if (cData == null) {
+            return;
+        }
+
+        holder.userName.setText(cData.getUserName());
 
         String phoneNumber = convertPhoneNum(cData.getPhoneNumber());
 
