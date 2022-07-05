@@ -46,8 +46,6 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
 
     public static Fragment fragment;
 
-
-
     public Tab2() { }
     @Nullable
     @Override

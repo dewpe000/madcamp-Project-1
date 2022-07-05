@@ -59,12 +59,25 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     public void onBindViewHolder(@NonNull ContactAdapter.ContactViewHolder holder, @SuppressLint("RecyclerView") int position) {
         ContactData cData = contactList.get(position);
         holder.userName.setText(cData.getUserName());
-        holder.phoneNumber.setText(cData.getPhoneNumber());
+
+
+        String phoneNumber = convertPhoneNum(cData.getPhoneNumber());
+
+        holder.phoneNumber.setText(phoneNumber);
         holder.linearLayout.setVisibility(View.GONE);
 
         holder.profile.setImageDrawable(context.getResources().getDrawable(R.drawable.baseline_person_24));
-        Bitmap profile = loadImage(context.getContentResolver(), cData.getPhotoId(), cData.getPersonId());
 
+        Bitmap profile;
+
+        Log.d("AAAAAAAAAAAAAA", Long.toString(cData.getPersonId()));
+
+        if(cData.getPersonId() == -1) {
+            profile = cData.getBitmap();
+        }
+        else {
+            profile = loadImage(context.getContentResolver(), cData.getPhotoId(), cData.getPersonId());
+        }
         if(profile != null) {
             if(Build.VERSION.SDK_INT >= 21) {
 //              holder.profile.setBackground(new ShapeDrawable(new OvalShape()));
@@ -218,6 +231,29 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
         rBitmap = Bitmap.createScaledBitmap(oBitmap, (int)width, (int)height, true);
         return rBitmap;
+    }
+
+    public static String convertPhoneNum(String phoneNumber) {
+        String copy = phoneNumber.replaceAll("-", "");
+
+        if (copy.length() == 11) {
+            copy = copy.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
+
+        }
+        else if(copy.length()==8){
+            copy = copy.replaceAll("(\\d{4})(\\d{4})", "$1-$2");
+        }
+        else{
+            if(copy.indexOf("02")==0){
+                copy = copy.replaceAll("(\\d{2})(\\d{3,4})(\\d{4})", "$1-$2-$3");
+
+            }
+            else{
+                copy = copy.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
+            }
+        }
+
+        return copy;
     }
 
     public class ContactViewHolder extends RecyclerView.ViewHolder {

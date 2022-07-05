@@ -1,6 +1,7 @@
 package com.example.project1.Main;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.project1.Tab1.ContactAddActivity;
+import com.example.project1.Tab1.ContactData;
 import com.example.project1.Tab2.OnBackPressedListener;
 import com.example.project1.R;
 import com.example.project1.Tab1.Tab1;
@@ -100,6 +103,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        ContactData cData = ContactAddActivity.cData;
+        ((Tab1) Tab1.fragment).getContactList().add(cData);
+        ((Tab1) Tab1.fragment).getContactAdapter().notifyDataSetChanged();
+    }
 
     public void setOnBackPressedListener(OnBackPressedListener listener){
         this.listener = listener;

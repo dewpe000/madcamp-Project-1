@@ -70,7 +70,7 @@ public class Tab1 extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ContactAddActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1234);
             }
         });
 
@@ -99,7 +99,6 @@ public class Tab1 extends Fragment {
                 String userName = cursor.getString(1);
                 long photoId = cursor.getLong(2);
                 long personId = cursor.getLong(3);
-                phoneNumber = convertPhoneNum(phoneNumber);
                 ContactData currData = new ContactData(photoId, personId, userName, phoneNumber);
 
                 contactList.add(currData);
@@ -114,32 +113,12 @@ public class Tab1 extends Fragment {
         return contactList;
     }
 
-    public static String convertPhoneNum(String phoneNumber) {
-        String copy = phoneNumber.replaceAll("-", "");
-
-        if (copy.length() == 11) {
-            copy = copy.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
-
-        }
-        else if(copy.length()==8){
-            copy = copy.replaceAll("(\\d{4})(\\d{4})", "$1-$2");
-        }
-        else{
-            if(copy.indexOf("02")==0){
-                copy = copy.replaceAll("(\\d{2})(\\d{3,4})(\\d{4})", "$1-$2-$3");
-
-            }
-            else{
-                    copy = copy.replaceAll("(\\d{3})(\\d{3,4})(\\d{4})", "$1-$2-$3");
-            }
-        }
-
-        return copy;
-    }
 
     public ArrayList<ContactData> getContactList() {
         return contactList;
     }
+
+    public ContactAdapter getContactAdapter() { return contactAdapter; }
 
     @Override
     public void onDestroy() {

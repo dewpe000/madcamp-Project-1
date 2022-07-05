@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +31,14 @@ public class ContactAddActivity extends AppCompatActivity {
     TextView addConfirm;
     TextView addCancel;
     ImageView addImage;
+
+    EditText addName;
+    EditText addPNumber;
+
     Bitmap bitmap;
+
+    public static ContactData cData;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,10 +51,19 @@ public class ContactAddActivity extends AppCompatActivity {
         addConfirm = findViewById(R.id.addConfirm);
         addCancel = findViewById(R.id.addCancel);
         addImage = findViewById(R.id.addImage);
+        addName = findViewById(R.id.addName);
+        addPNumber = findViewById(R.id.addPNumber);
 
         addConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                cData = new ContactData(-1, -1, addName.getText().toString(), addPNumber.getText().toString());
+                if(bitmap!= null) {
+                    cData.setBitmap(bitmap);
+                }
+
+                setResult(RESULT_OK);
+                finish();
             }
         });
 
