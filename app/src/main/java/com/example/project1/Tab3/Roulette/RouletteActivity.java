@@ -61,10 +61,14 @@ public class RouletteActivity extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Random random = new Random();
-                val = random.nextInt(size) + 1;
-                point = String.valueOf(val);
-                luckyWheel.rotateWheelTo(Integer.parseInt(point));
+                if (init == 0) {
+                    Toast.makeText(RouletteActivity.this, "add some items", Toast.LENGTH_SHORT).show();
+                } else {
+                    Random random = new Random();
+                    val = random.nextInt(size) + 1;
+                    point = String.valueOf(val);
+                    luckyWheel.rotateWheelTo(Integer.parseInt(point));
+                }
             }
         });
 

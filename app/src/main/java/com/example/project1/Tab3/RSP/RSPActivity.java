@@ -136,9 +136,10 @@ public class RSPActivity extends AppCompatActivity {
                     imageView2.setImageResource(R.drawable.init_rsp);
                     ply1_img.setImageResource(R.drawable.ply1);
                     ply2_img.setImageResource(R.drawable.ply2);
+                    ply1 = 0;
+                    ply2 = 0;
                     play.setText("play");
                 }
-//                play.setVisibility(View.GONE);
 
 
             }
@@ -152,7 +153,10 @@ public class RSPActivity extends AppCompatActivity {
             public void onClick(View view) {
                 imageView1.setImageResource(R.drawable.init_rsp);
                 imageView2.setImageResource(R.drawable.init_rsp);
-//                play.setVisibility(View.VISIBLE);
+                ply1_img.setImageResource(R.drawable.ply1);
+                ply2_img.setImageResource(R.drawable.ply2);
+                ply1 = 0;
+                ply2 = 0;
                 play.setText("play");
             }
         });

@@ -108,42 +108,48 @@ public class DrawActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String newitem = editText.getText().toString();
 
-                        if (newitem == "") {
-                            Toast.makeText(DrawActivity.this, "empty input", Toast.LENGTH_SHORT).show();
-                        } else {
-                            num = Integer.parseInt(newitem);
+                        if (newitem.matches("-?\\d+")) {
+//                            String newitem = editText.getText().toString();
 
-                            ArrayList<String> chosen = new ArrayList<>();
+                            if (newitem == "") {
+                                Toast.makeText(DrawActivity.this, "empty input", Toast.LENGTH_SHORT).show();
+                            } else {
+                                num = Integer.parseInt(newitem);
 
-                            Random random = new Random();
+                                ArrayList<String> chosen = new ArrayList<>();
 
-                            int count = 0;
-                            String currItem;
+                                Random random = new Random();
 
-                            while(true) {
-                                val = random.nextInt(items.size());
+                                int count = 0;
+                                String currItem;
 
-                                currItem = items.get(val);
+                                while(true) {
+                                    val = random.nextInt(items.size());
 
-                                if(chosen.contains(currItem)) {
-                                    continue;
+                                    currItem = items.get(val);
+
+                                    if(chosen.contains(currItem)) {
+                                        continue;
+                                    }
+
+                                    chosen.add(currItem);
+                                    count++;
+
+                                    if(count == num)
+                                        break;
                                 }
 
-                                chosen.add(currItem);
-                                count++;
+                                String result = "";
 
-                                if(count == num)
-                                    break;
+                                for (int n = 0; n < chosen.size(); n++) {
+                                    result = result + chosen.get(n) + '\n';
+                                }
+
+                                textView.setText(result);
+                                textView.setVisibility(View.VISIBLE);
                             }
-
-                            String result = "";
-
-                            for (int n = 0; n < chosen.size(); n++) {
-                                result = result + chosen.get(n) + '\n';
-                            }
-
-                            textView.setText(result);
-                            textView.setVisibility(View.VISIBLE);
+                        } else {
+                            Toast.makeText(DrawActivity.this, "not an integer", Toast.LENGTH_SHORT).show();
                         }
 
                         dialogInterface.dismiss();

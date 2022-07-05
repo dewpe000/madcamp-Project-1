@@ -128,7 +128,7 @@ public class Tab2 extends Fragment implements OnBackPressedListener {
                 ImageData imageData = new ImageData("name", imageUri);
                 imageList.add(imageData);
             }
-            else{
+            else {
                 ClipData clipData = data.getClipData();
                 Log.e("clipData", String.valueOf(clipData.getItemCount()));
 
