@@ -70,7 +70,7 @@ public class LotteryActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(lotteryAdd.getText().equals("ADD")) {
-                    String newItem = new String("통과");
+                    String newItem = new String("pass");
                     lotteryList.add(newItem);
 
                     int red = random.nextInt(255);
@@ -99,17 +99,17 @@ public class LotteryActivity extends AppCompatActivity {
                 final EditText editText = new EditText(LotteryActivity.this);
                 AlertDialog.Builder dlg = new AlertDialog.Builder(LotteryActivity.this);
 
-                dlg.setTitle("당첨자를 입력해주세요");
+                dlg.setTitle("How much?");
                 dlg.setView(editText);
 
-                dlg.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+                dlg.setPositiveButton("NO", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         lotteryAdapter.notifyDataSetChanged();
                     }
                 });
 
-                dlg.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                dlg.setNegativeButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         int num = Integer.parseInt(editText.getText().toString());
@@ -140,7 +140,7 @@ public class LotteryActivity extends AppCompatActivity {
 
 
         for(int i = 0; i< lotteryList.size(); i++) {
-            lotteryList.set(i, "통과");
+            lotteryList.set(i, "pass");
         }
 
         int winner = 0;
@@ -161,8 +161,9 @@ public class LotteryActivity extends AppCompatActivity {
                 break;
         }
 
-        for(int i = 0; i < winnerList.size(); i++)
-            lotteryList.set(winnerList.get(i), "꽝");
+        for(int i = 0; i < winnerList.size(); i++) {
+            lotteryList.set(winnerList.get(i), "fail");
+        }
 
         Collections.sort(colorList);
     }

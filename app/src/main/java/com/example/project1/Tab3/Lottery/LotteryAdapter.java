@@ -51,6 +51,7 @@ public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryV
         int color = colorList.get(position);
 
         holder.lotteryValue.setText(lotteryVal);
+        holder.lotteryValue.setBackground(context.getResources().getDrawable(R.drawable.lottery_pass));
 
         holder.lotteryValue.setVisibility(View.INVISIBLE);
         lotteryList.add(holder);
@@ -62,10 +63,13 @@ public class LotteryAdapter extends RecyclerView.Adapter<LotteryAdapter.LotteryV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LotteryDialog dlg = new LotteryDialog(view.getContext(), (lotteryVal + "!!!!!"));
-                dlg.show();
                 holder.lotteryValue.setVisibility(View.VISIBLE);
                 holder.lotteryImage.setImageResource(R.drawable.icon_fold_paper);
+
+                if(holder.lotteryValue.getText().equals("fail")){
+                    holder.lotteryValue.setBackground(context.getResources().getDrawable(R.drawable.lottery_fail));
+                }
+
             }
         });
     }
