@@ -23,15 +23,30 @@
                 android:text="Lottery"
                 android:textSize="30dp"
                 android:textStyle="bold" />
-            <Button
-                android:id="@+id/lotteryClear"
-                android:background="@drawable/ic_baseline_refresh_24"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:backgroundTint="@color/teal_200"
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="20dp" >
+
+                <TextView
+                    android:id="@+id/curLottery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="0 / 0"
+                    android:textSize="30dp"/>
+
+                <Button
+                    android:id="@+id/lotteryClear"
+                    android:background="@drawable/ic_baseline_refresh_24"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"/>
+            </LinearLayout>
+
 
         </RelativeLayout>
 
@@ -64,13 +79,20 @@
                     android:text="add" />
 
                 <Button
-                    android:id="@+id/lotteryFinish"
+                    android:id="@+id/lotteryWinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/title"
                     android:layout_marginLeft="20dp"
-                    android:text="Finish"
+                    android:text="Winner"
                     />
+
+<!--                <Button-->
+<!--                    android:id="@+id/lotteryFinish"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:text="Finish"-->
+<!--                    />-->
 
             </LinearLayout>
 

@@ -186,7 +186,8 @@ public class DrawActivity extends AppCompatActivity {
             public void onClick(View view) {
                 items.clear();
                 adapter.notifyDataSetChanged();
-                textView.setVisibility(View.GONE);
+                textView.setText("");
+                //textView.setVisibility(View.GONE);
             }
         });
 
